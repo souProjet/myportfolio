@@ -1117,7 +1117,6 @@ ul#bix_activity li.active a {
 }
 .bix-achievement .bix-achievement-inner .bix-achievement-box p {
   display: -webkit-box;
-  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 .bix-achievement .bix-achievement-inner .bix-achievement-box.left:after {
