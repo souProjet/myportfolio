@@ -110,26 +110,28 @@
         <div
             class="flex h-full flex-wrap justify-between relative items-center mx-auto min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
             <div class="flex flex-wrap w-full">
-                <div class="min-[992px]:w-[50%] w-full px-[12px]">
-                    <div class="bix-hero-img relative" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="600">
-                        <div class="hero-inner-img relative">
-                            <img src="assets/img/swann2.png" alt="hero" data-offset="30"
-                                class="hero-parallax w-[calc(100%-300px)] mt-auto mx-auto mb-[50px] block max-[1399px]:w-[calc(100%-260px)] max-[1199px]:w-[calc(100%-215px)] max-[991px]:w-[calc(100%-400px)] max-[767px]:w-[calc(100%-250px)] max-[575px]:w-[210px]">
+                <div class="flex flex-wrap w-full">
+                    <div class="min-[992px]:w-[50%] w-full px-[12px]">
+                        <div class="bix-hero-img relative" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="600">
+                            <div class="hero-inner-img relative">
+                                <img src="assets/img/swann2.png" alt="hero" data-offset="30"
+                                    class="hero-parallax w-[calc(100%-300px)] mt-auto mx-auto mb-[50px] block max-[1399px]:w-[calc(100%-260px)] max-[1199px]:w-[calc(100%-215px)] max-[991px]:w-[calc(100%-400px)] max-[767px]:w-[calc(100%-250px)] max-[575px]:w-[210px]">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="min-[992px]:w-[50%] w-full px-[12px]">
-                    <div
-                        class="bix-hero-contact h-full flex flex-col justify-center relative max-[991px]:mt-[15px] max-[991px]:pb-[30px] max-[991px]:items-center max-[575px]:text-center">
-                        <h4 class="mb-[8px] font-montserrat tracking-[0.03rem] leading-[1.2] text-[35px] font-bold text-[#f41a4a] max-[1399px]:text-[32px] max-[1199px]:text-[28px] max-[767px]:text-[24px] reveal-text"
-                            data-aos="fade-up" data-aos-duration="2000" data-aos-delay="600">Bonjour, je suis</h4>
-                        <h1 class="mb-[16px] text-[78px] text-[#111a24] font-bold relative tracking-[0.03rem] leading-[1.2] max-[1399px]:text-[70px] max-[1199px]:text-[52px] max-[767px]:text-[38px] reveal-text"
-                            data-aos="fade-up" data-aos-duration="2000" data-aos-delay="700">Swann Bougouin</h1>
-                        <h2 class="font-montserrat text-[27px] font-semibold text-[#111a24] leading-[26px] tracking-[0.03rem] max-[1399px]:text-[24px] max-[1199px]:text-[20px] max-[767px]:text-[18px] reveal-text"
-                            data-aos="fade-up" data-aos-duration="2000" data-aos-delay="800">
-                            <span class="mx-[5px] text-[#f41a4a]">Développeur Web Full-stack</span> <span class="text-[#111a24]"> à Nantes</span>
+                    <div class="min-[992px]:w-[50%] w-full px-[12px]">
+                        <div
+                            class="bix-hero-contact h-full flex flex-col justify-center relative max-[991px]:mt-[15px] max-[991px]:pb-[30px] max-[991px]:items-center max-[575px]:text-center">
+                            <h4 class="mb-[8px] font-montserrat tracking-[0.03rem] leading-[1.2] text-[35px] font-bold text-[#f41a4a] max-[1399px]:text-[32px] max-[1199px]:text-[28px] max-[767px]:text-[24px] reveal-text"
+                                data-aos="fade-up" data-aos-duration="2000" data-aos-delay="600">Bonjour, je suis</h4>
+                            <h1 class="mb-[16px] text-[78px] text-[#111a24] font-bold relative tracking-[0.03rem] leading-[1.2] max-[1399px]:text-[70px] max-[1199px]:text-[52px] max-[767px]:text-[38px] reveal-text"
+                                data-aos="fade-up" data-aos-duration="2000" data-aos-delay="700">Swann Bougouin</h1>
+                            <h2 class="font-montserrat text-[27px] font-semibold text-[#111a24] leading-[26px] tracking-[0.03rem] max-[1399px]:text-[24px] max-[1199px]:text-[20px] max-[767px]:text-[18px] reveal-text"
+                                data-aos="fade-up" data-aos-duration="2000" data-aos-delay="800">
+                                <span class="mx-[5px] text-[#f41a4a]">Développeur Web Full-stack</span> <span class="text-[#111a24]"> à Nantes</span>
 
-                        </h2>
+                            </h2>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -771,17 +773,17 @@
                                 <form id="contactForm" class="space-y-[20px]">
                                     <div class="grid grid-cols-2 gap-[20px] max-[767px]:grid-cols-1">
                                         <div class="form-group">
-                                            <input type="text" class="w-full px-[15px] py-[12px] rounded-[10px] border border-[#111a24] bg-transparent focus:outline-none focus:border-[#f41a4a]" placeholder="Votre nom" required>
+                                            <input type="text" name="user_name" class="w-full px-[15px] py-[12px] rounded-[10px] border border-[#111a24] bg-transparent focus:outline-none focus:border-[#f41a4a]" placeholder="Votre nom" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="w-full px-[15px] py-[12px] rounded-[10px] border border-[#111a24] bg-transparent focus:outline-none focus:border-[#f41a4a]" placeholder="Votre email" required>
+                                            <input type="email" name="user_email" class="w-full px-[15px] py-[12px] rounded-[10px] border border-[#111a24] bg-transparent focus:outline-none focus:border-[#f41a4a]" placeholder="Votre email" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="w-full px-[15px] py-[12px] rounded-[10px] border border-[#111a24] bg-transparent focus:outline-none focus:border-[#f41a4a]" placeholder="Sujet" required>
+                                        <input type="text" name="subject" class="w-full px-[15px] py-[12px] rounded-[10px] border border-[#111a24] bg-transparent focus:outline-none focus:border-[#f41a4a]" placeholder="Sujet" required>
                                     </div>
                                     <div class="form-group">
-                                        <textarea class="w-full px-[15px] py-[12px] rounded-[10px] border border-[#111a24] bg-transparent focus:outline-none focus:border-[#f41a4a] h-[150px]" placeholder="Votre message" required></textarea>
+                                        <textarea name="message" class="w-full px-[15px] py-[12px] rounded-[10px] border border-[#111a24] bg-transparent focus:outline-none focus:border-[#f41a4a] h-[150px]" placeholder="Votre message" required></textarea>
                                     </div>
                                     <button type="submit" class="bg-[#f41a4a] text-white px-[30px] py-[12px] rounded-[10px] hover:bg-[#e01842] transition-colors">
                                         Envoyer le message
@@ -855,11 +857,28 @@
     <script src="assets/js/vendor/parallax.min.js"></script>
     <script src="assets/js/vendor/aos.js"></script>
     <script src="assets/js/vendor/smoothscroll.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <!-- main-js -->
     <script src="assets/js/main.js"></script>
 
     <script src="js/animations.js"></script>
+    <script src="js/contact.js"></script>
+
+    <!-- Notification -->
+    <div id="notification" class="fixed top-4 right-4 z-50 transform translate-x-full transition-transform duration-300">
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm border border-green-500">
+            <div class="flex items-center">
+                <div class="flex-shrink-0">
+                    <i class="ri-checkbox-circle-line text-green-500 text-2xl"></i>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-sm font-medium text-green-600" id="notification-title">Succès</h3>
+                    <p class="mt-1 text-sm text-gray-500" id="notification-message">Votre message a été envoyé avec succès !</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
