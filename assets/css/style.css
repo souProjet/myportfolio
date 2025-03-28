@@ -1650,3 +1650,68 @@ a span {
         transform: none;
     }
 }
+
+/* Section Contact */
+.section-contact {
+    background-color: #fff;
+}
+
+.contact-info, .contact-form {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.contact-info:hover, .contact-form:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.contact-icon {
+    transition: all 0.3s ease;
+}
+
+.contact-icon:hover {
+    transform: scale(1.1);
+    background-color: #e01842;
+}
+
+.form-group input,
+.form-group textarea {
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    transform: translateY(-2px);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #999;
+    opacity: 0.8;
+}
+
+.contact-form button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.contact-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(244, 26, 74, 0.3);
+}
+
+.contact-form button:active {
+    transform: translateY(0);
+}
+
+@media screen and (max-width: 768px) {
+    .contact-info, .contact-form {
+        transform: none !important;
+    }
+    
+    .contact-info:hover, .contact-form:hover {
+        transform: none !important;
+    }
+}
