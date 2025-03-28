@@ -85,6 +85,9 @@
     }
     </script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
 </head>
 
 <body>
@@ -99,11 +102,11 @@
         class="section-hero h-[800px] relative pb-[50px] max-[991px]:h-auto max-[991px]:pb-[40px] max-[767px]:pb-[35px]"
         id="home">
         <div
-            class="first-name top-[0] leading-none absolute font-montserrat text-[200px] font-black text-[#fff] opacity-[0.04] max-[991px]:text-[130px] max-[991px]:top-[30px] max-[575px]:text-[100px] max-[460px]:text-[70px]">
-            Swann</div>
+            class="first-name top-[0] leading-none absolute font-montserrat text-[200px] font-black text-[#fff] opacity-[0.04] max-[991px]:text-[130px] max-[991px]:top-[30px] max-[575px]:text-[100px] max-[460px]:text-[70px] parallax"
+            data-speed="0.2">Swann</div>
         <div
-            class="last-name bottom-[0] right-[0] absolute font-montserrat text-[200px] font-black text-[#fff] opacity-[0.04] max-[991px]:bottom-[250px] max-[991px]:text-[130px] max-[575px]:text-[100px] max-[460px]:text-[70px]">
-            Bougouin</div>
+            class="last-name bottom-[0] right-[0] absolute font-montserrat text-[200px] font-black text-[#fff] opacity-[0.04] max-[991px]:bottom-[250px] max-[991px]:text-[130px] max-[575px]:text-[100px] max-[460px]:text-[70px] parallax"
+            data-speed="0.3">Bougouin</div>
         <div
             class="flex h-full flex-wrap justify-between relative items-center mx-auto min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
             <div class="flex flex-wrap w-full">
@@ -118,11 +121,11 @@
                 <div class="min-[992px]:w-[50%] w-full px-[12px]">
                     <div
                         class="bix-hero-contact h-full flex flex-col justify-center relative max-[991px]:mt-[15px] max-[991px]:pb-[30px] max-[991px]:items-center max-[575px]:text-center">
-                        <h4 class="mb-[8px] font-montserrat tracking-[0.03rem] leading-[1.2] text-[35px] font-bold text-[#f41a4a] max-[1399px]:text-[32px] max-[1199px]:text-[28px] max-[767px]:text-[24px]"
+                        <h4 class="mb-[8px] font-montserrat tracking-[0.03rem] leading-[1.2] text-[35px] font-bold text-[#f41a4a] max-[1399px]:text-[32px] max-[1199px]:text-[28px] max-[767px]:text-[24px] reveal-text"
                             data-aos="fade-up" data-aos-duration="2000" data-aos-delay="600">Bonjour, je suis</h4>
-                        <h1 class="mb-[16px] text-[78px] text-[#111a24] font-bold relative tracking-[0.03rem] leading-[1.2] max-[1399px]:text-[70px] max-[1199px]:text-[52px] max-[767px]:text-[38px]"
+                        <h1 class="mb-[16px] text-[78px] text-[#111a24] font-bold relative tracking-[0.03rem] leading-[1.2] max-[1399px]:text-[70px] max-[1199px]:text-[52px] max-[767px]:text-[38px] reveal-text"
                             data-aos="fade-up" data-aos-duration="2000" data-aos-delay="700">Swann Bougouin</h1>
-                        <h2 class="font-montserrat text-[27px] font-semibold text-[#111a24] leading-[26px] tracking-[0.03rem] max-[1399px]:text-[24px] max-[1199px]:text-[20px] max-[767px]:text-[18px]"
+                        <h2 class="font-montserrat text-[27px] font-semibold text-[#111a24] leading-[26px] tracking-[0.03rem] max-[1399px]:text-[24px] max-[1199px]:text-[20px] max-[767px]:text-[18px] reveal-text"
                             data-aos="fade-up" data-aos-duration="2000" data-aos-delay="800">
                             <span class="mx-[5px] text-[#f41a4a]">Développeur Web Full-stack</span> <span class="text-[#111a24]"> à Nantes</span>
 
@@ -774,6 +777,8 @@
 
     <!-- main-js -->
     <script src="assets/js/main.js"></script>
+
+    <script src="js/animations.js"></script>
 
 </body>
 
