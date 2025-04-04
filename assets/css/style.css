@@ -1715,3 +1715,48 @@ a span {
         transform: none !important;
     }
 }
+
+/* Navbar Styles */
+nav {
+    transition: all 0.3s ease;
+}
+
+nav.nav-scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #f41a4a;
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+.nav-link:hover::before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Mobile Menu Styles */
+#mobile-menu {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+/* Hamburger Menu Animation */
+.menu-button {
+    cursor: pointer;
+}
+
+.hamburger-line {
+    margin-left: -12px;
+    transition: all 0.3s ease;
+}

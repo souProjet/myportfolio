@@ -219,4 +219,70 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+});
+
+// Menu mobile animations
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburgerLines = document.querySelectorAll('.hamburger-line');
+
+    if (mobileMenuButton && mobileMenu) {
+        let isOpen = false;
+
+        // Positionner les lignes du hamburger
+        hamburgerLines[0].style.top = '25%';
+        hamburgerLines[1].style.top = '50%';
+        hamburgerLines[2].style.top = '75%';
+
+        mobileMenuButton.addEventListener('click', function() {
+            isOpen = !isOpen;
+            
+            // Animer les lignes du hamburger
+            if (isOpen) {
+                hamburgerLines[0].style.top = '50%';
+                hamburgerLines[0].style.transform = 'rotate(45deg)';
+                hamburgerLines[1].style.opacity = '0';
+                hamburgerLines[2].style.top = '50%';
+                hamburgerLines[2].style.transform = 'rotate(-45deg)';
+                
+                mobileMenu.classList.remove('hidden');
+                // Petit délai pour permettre l'animation
+                setTimeout(() => {
+                    mobileMenu.style.opacity = '1';
+                    mobileMenu.style.transform = 'translateY(0)';
+                }, 10);
+            } else {
+                hamburgerLines[0].style.top = '25%';
+                hamburgerLines[0].style.transform = 'rotate(0)';
+                hamburgerLines[1].style.opacity = '1';
+                hamburgerLines[2].style.top = '75%';
+                hamburgerLines[2].style.transform = 'rotate(0)';
+                
+                mobileMenu.style.opacity = '0';
+                mobileMenu.style.transform = 'translateY(-10px)';
+                // Attendre la fin de l'animation avant de cacher
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+            }
+        });
+
+        // Fermer le menu mobile lors d'un clic à l'extérieur
+        document.addEventListener('click', function(event) {
+            if (isOpen && !mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                mobileMenuButton.click();
+            }
+        });
+    }
+});
+
+// Ajouter une classe active à la navbar lors du scroll
+window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('nav');
+    if (window.scrollY > 50) {
+        navbar.classList.add('nav-scrolled');
+    } else {
+        navbar.classList.remove('nav-scrolled');
+    }
 }); 

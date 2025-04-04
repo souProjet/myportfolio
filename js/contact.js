@@ -29,11 +29,16 @@ function showNotification(title, message, isError = false) {
     }
     
     // Afficher la notification
+    notification.classList.remove('hidden');
     notification.classList.remove('translate-x-full');
     
     // La cacher après 5 secondes
     setTimeout(() => {
         notification.classList.add('translate-x-full');
+        // Ajouter un délai avant d'ajouter la classe hidden pour permettre l'animation de transition
+        setTimeout(() => {
+            notification.classList.add('hidden');
+        }, 300);
     }, 5000);
 }
 
