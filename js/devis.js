@@ -255,4 +255,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialiser les sélections par défaut au chargement
     setDefaultSelections();
-});
+}); 
