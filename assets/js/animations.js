@@ -285,4 +285,19 @@ window.addEventListener('scroll', function() {
     } else {
         navbar.classList.remove('nav-scrolled');
     }
-}); 
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    AOS.init({
+        duration: 200, // durée plus courte pour toutes les animations
+        once: true, // animations ne se jouent qu'une seule fois
+        offset: 20, // déclencher plus tôt
+        delay: 0, // pas de délai par défaut
+        easing: 'ease-out-cubic', // courbe d'animation plus rapide
+    });
+});
+
+// Ré-initialiser AOS lors du redimensionnement de la fenêtre
+window.addEventListener('resize', function() {
+    AOS.refresh();
+});

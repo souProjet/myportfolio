@@ -16,85 +16,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Styles pour empêcher le défilement horizontal sur mobile -->
-    <style>
-        html, body {
-            overflow-x: hidden;
-            width: 100%;
-            position: relative;
-        }
-        
-        @media screen and (max-width: 768px) {
-            .container {
-                width: 100% !important;
-                padding-left: 15px !important;
-                padding-right: 15px !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
-            }
-            
-            .row {
-                margin-left: -15px !important;
-                margin-right: -15px !important;
-            }
-            
-            [class*="col-"] {
-                padding-left: 15px !important;
-                padding-right: 15px !important;
-            }
-            
-            .section-hero:before,
-            .section-hero:after {
-                width: 100% !important;
-                max-width: 100vw !important;
-            }
-
-            /* Ajustements pour les sections problématiques */
-            .bix-project-card .project-image {
-                padding-left: 15px !important;
-                padding-right: 15px !important;
-            }
-
-            .bix-services {
-                margin-left: 0 !important;
-                margin-right: 0 !important;
-            }
-
-            .method-card {
-                margin-left: 10px !important;
-                margin-right: 10px !important;
-            }
-
-            .project-type-card {
-                margin: 10px !important;
-            }
-
-            /* Ajustement des marges négatives */
-            .flex.flex-wrap {
-                margin-left: 0 !important;
-                margin-right: 0 !important;
-            }
-
-            /* Ajustement des conteneurs flex */
-            [class*="min-["] {
-                width: 100% !important;
-                max-width: 100% !important;
-            }
-
-            /* Ajustement des images */
-            img {
-                max-width: 100% !important;
-                height: auto !important;
-            }
-
-            /* Ajustement des grilles */
-            .grid {
-                margin-left: 0 !important;
-                margin-right: 0 !important;
-                padding: 0 15px !important;
-            }
-        }
-    </style>
 
     <meta name="description"
         content="Portfolio professionnel de Swann Bougouin, développeur web full-stack basé à Nantes. Découvrez mes projets et compétences en développement web, mes réalisations et mon parcours professionnel. Expert en JavaScript, React, Next.js, Node.js et bases de données.">
@@ -112,9 +33,8 @@
 
     <!-- tailwindcss -->
     <script src="assets/js/vendor/tailwindcss3.4.5.js"></script>
-
-    <!-- Main Style -->
     <link rel="stylesheet" href="assets/css/style.css">
+
 
     <!-- Balises meta pour le SEO -->
     <meta name="author" content="Swann Bougouin">
@@ -181,7 +101,7 @@
 
 </head>
 
-<body>
+<body >
 
     <!-- Navbar -->
     <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/80">
@@ -297,13 +217,13 @@
             <div class="flex flex-wrap w-full">
                 <div class="w-full px-[12px]">
                     <div class="bix-banner mb-[30px] flex justify-center text-center max-[1199px]:mb-[25px] max-[767px]:mb-[20px]"
-                        data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
+                        data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
                         <h4
                             class="font-montserrat text-[36px] font-bold text-[#111a24] tracking-[0.03rem] leading-[1.2] max-[1199px]:text-[32px] max-[767px]:text-[28px] max-[575px]:text-[24px]">
                             Mon <span class="text-[#f41a4a]">Parcours</span></h4>
                     </div>
-                    <div class="bix-banner-line mb-[110px]" data-aos="fade-up" data-aos-duration="2000"
-                        data-aos-delay="600">
+                    <div class="bix-banner-line mb-[110px]" data-aos="fade-up" data-aos-duration="500"
+                        data-aos-delay="300">
                         <span class="inner-border relative flex justify-center"></span>
                     </div>
                 </div>
@@ -317,7 +237,7 @@
                                             <div
                                                 class="bix-achievement-inner bix-border-r w-[50%] pr-[30px] border-r-[0.5px] border-solid border-[#111a24] max-[767px]:w-full max-[767px]:flex max-[767px]:flex-col max-[767px]:border-[0] max-[767px]:p-[0]">
                                                 <div class="bix-achievement-box left border-[1px] border-solid border-[#111a24] p-[30px] rounded-[30px] bg-[#f7f5fb] relative max-[767px]:mt-[12px] max-[767px]:mb-[24px]"
-                                                    data-aos="fade-up" data-aos-duration="2000" data-aos-delay="200">
+                                                    data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
                                                     <div
                                                         class="achievement-year w-[100px] h-full absolute top-[0] flex items-center justify-center rotate-[270deg] z-[1] right-[-82px] max-[767px]:block max-[767px]:rotate-[0] max-[767px]:top-[-13px] max-[767px]:left-[45px]">
                                                         <span
@@ -342,7 +262,7 @@
                                                     </p>
                                                 </div>
                                                 <div class="bix-achievement-box left border-[1px] border-solid border-[#111a24] mt-[150px] p-[30px] rounded-[30px] bg-[#f7f5fb] relative max-[767px]:mt-[12px] max-[767px]:mb-[24px]"
-                                                    data-aos="fade-up" data-aos-duration="2000" data-aos-delay="300">
+                                                    data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
                                                     <div
                                                         class="achievement-year w-[120px] h-full absolute top-[0] flex items-center justify-center rotate-[270deg] z-[1] right-[-92px] max-[767px]:block max-[767px]:rotate-[0] max-[767px]:top-[-13px] max-[767px]:left-[45px]">
                                                         <span
@@ -369,7 +289,7 @@
                                             <div
                                                 class="bix-achievement-inner bix-border-l w-[50%] pl-[30px] border-l-[0.5px] border-solid border-[#111a24] max-[767px]:w-full max-[767px]:flex max-[767px]:flex-col max-[767px]:border-[0] max-[767px]:p-[0] max-[767px]:mb-[-24px]">
                                                 <div class="bix-achievement-box right border-[1px] border-solid border-[#111a24] mt-[150px] p-[30px] rounded-[30px] bg-[#f7f5fb] relative max-[767px]:mt-[12px] max-[767px]:mb-[24px]"
-                                                    data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
+                                                    data-aos="fade-up" data-aos-duration="500" data-aos-delay="400">
                                                     <div
                                                         class="achievement-year w-[100px] h-full absolute top-[0] flex items-center justify-center rotate-[270deg] z-[1] left-[-82px] max-[767px]:block max-[767px]:rotate-[0] max-[767px]:top-[-13px] max-[767px]:left-[45px]">
                                                         <span
@@ -408,12 +328,12 @@
         <div class="flex flex-wrap justify-between relative items-center mx-auto min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
             <div class="flex flex-wrap w-full">
                 <div class="w-full px-[12px]">
-                    <div class="bix-banner mb-[30px] flex justify-center text-center max-[1199px]:mb-[25px] max-[767px]:mb-[20px]" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
+                    <div class="bix-banner mb-[30px] flex justify-center text-center max-[1199px]:mb-[25px] max-[767px]:mb-[20px]" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
                         <h4 class="font-montserrat text-[36px] font-bold text-[#111a24] tracking-[0.03rem] leading-[1.2] max-[1199px]:text-[32px] max-[767px]:text-[28px] max-[575px]:text-[24px]">
                             Ma <span class="text-[#f41a4a]">Méthode</span>
                         </h4>
                     </div>
-                    <div class="bix-banner-line mb-[110px]" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="600">
+                    <div class="bix-banner-line mb-[110px]" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
                         <span class="inner-border relative flex justify-center"></span>
                     </div>
                 </div>
@@ -422,7 +342,7 @@
                 <div class="w-full">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <!-- Étape 1 -->
-                        <div class="method-card bg-[#f7f5fb] p-8 rounded-[30px] border border-[#111a24] relative overflow-hidden group transition-all duration-300 hover:shadow-xl" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="200">
+                        <div class="method-card bg-[#f7f5fb] p-8 rounded-[30px] border border-[#111a24] relative overflow-hidden group transition-all duration-300 hover:shadow-xl" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                             <div class="absolute top-0 right-0 w-32 h-32 bg-[#f41a4a] opacity-10 rounded-full transform translate-x-16 -translate-y-16 group-hover:scale-150 transition-transform duration-500"></div>
                             <span class="text-[#f41a4a] text-6xl font-bold opacity-20 absolute top-4 right-4">01</span>
                             <h5 class="text-xl font-bold mb-4 relative z-10">Analyse & Découverte</h5>
@@ -444,7 +364,7 @@
                         </div>
 
                         <!-- Étape 2 -->
-                        <div class="method-card bg-[#f7f5fb] p-8 rounded-[30px] border border-[#111a24] relative overflow-hidden group transition-all duration-300 hover:shadow-xl" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
+                        <div class="method-card bg-[#f7f5fb] p-8 rounded-[30px] border border-[#111a24] relative overflow-hidden group transition-all duration-300 hover:shadow-xl" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
                             <div class="absolute top-0 right-0 w-32 h-32 bg-[#f41a4a] opacity-10 rounded-full transform translate-x-16 -translate-y-16 group-hover:scale-150 transition-transform duration-500"></div>
                             <span class="text-[#f41a4a] text-6xl font-bold opacity-20 absolute top-4 right-4">02</span>
                             <h5 class="text-xl font-bold mb-4 relative z-10">Conception & Design</h5>
@@ -466,7 +386,7 @@
                         </div>
 
                         <!-- Étape 3 -->
-                        <div class="method-card bg-[#f7f5fb] p-8 rounded-[30px] border border-[#111a24] relative overflow-hidden group transition-all duration-300 hover:shadow-xl" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="600">
+                        <div class="method-card bg-[#f7f5fb] p-8 rounded-[30px] border border-[#111a24] relative overflow-hidden group transition-all duration-300 hover:shadow-xl" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
                             <div class="absolute top-0 right-0 w-32 h-32 bg-[#f41a4a] opacity-10 rounded-full transform translate-x-16 -translate-y-16 group-hover:scale-150 transition-transform duration-500"></div>
                             <span class="text-[#f41a4a] text-6xl font-bold opacity-20 absolute top-4 right-4">03</span>
                             <h5 class="text-xl font-bold mb-4 relative z-10">Développement</h5>
@@ -488,7 +408,7 @@
                         </div>
 
                         <!-- Étape 4 -->
-                        <div class="method-card bg-[#f7f5fb] p-8 rounded-[30px] border border-[#111a24] relative overflow-hidden group transition-all duration-300 hover:shadow-xl" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="800">
+                        <div class="method-card bg-[#f7f5fb] p-8 rounded-[30px] border border-[#111a24] relative overflow-hidden group transition-all duration-300 hover:shadow-xl" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="800">
                             <div class="absolute top-0 right-0 w-32 h-32 bg-[#f41a4a] opacity-10 rounded-full transform translate-x-16 -translate-y-16 group-hover:scale-150 transition-transform duration-500"></div>
                             <span class="text-[#f41a4a] text-6xl font-bold opacity-20 absolute top-4 right-4">04</span>
                             <h5 class="text-xl font-bold mb-4 relative z-10">Tests & Validation</h5>
@@ -510,7 +430,7 @@
                         </div>
 
                         <!-- Étape 5 -->
-                        <div class="method-card bg-[#f7f5fb] p-8 rounded-[30px] border border-[#111a24] relative overflow-hidden group transition-all duration-300 hover:shadow-xl" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="1000">
+                        <div class="method-card bg-[#f7f5fb] p-8 rounded-[30px] border border-[#111a24] relative overflow-hidden group transition-all duration-300 hover:shadow-xl" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">
                             <div class="absolute top-0 right-0 w-32 h-32 bg-[#f41a4a] opacity-10 rounded-full transform translate-x-16 -translate-y-16 group-hover:scale-150 transition-transform duration-500"></div>
                             <span class="text-[#f41a4a] text-6xl font-bold opacity-20 absolute top-4 right-4">05</span>
                             <h5 class="text-xl font-bold mb-4 relative z-10">Déploiement</h5>
@@ -532,7 +452,7 @@
                         </div>
 
                         <!-- Étape 6 -->
-                        <div class="method-card bg-[#f7f5fb] p-8 rounded-[30px] border border-[#111a24] relative overflow-hidden group transition-all duration-300 hover:shadow-xl" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="1200">
+                        <div class="method-card bg-[#f7f5fb] p-8 rounded-[30px] border border-[#111a24] relative overflow-hidden group transition-all duration-300 hover:shadow-xl" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1200">
                             <div class="absolute top-0 right-0 w-32 h-32 bg-[#f41a4a] opacity-10 rounded-full transform translate-x-16 -translate-y-16 group-hover:scale-150 transition-transform duration-500"></div>
                             <span class="text-[#f41a4a] text-6xl font-bold opacity-20 absolute top-4 right-4">06</span>
                             <h5 class="text-xl font-bold mb-4 relative z-10">Maintenance & Support</h5>
@@ -564,7 +484,7 @@
             class="flex flex-wrap justify-between relative items-center mx-auto min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
             <div class="flex flex-wrap w-full mb-[-24px]">
                 <div class="min-[1200px]:w-[25%] min-[768px]:w-[50%] w-full px-[12px] mb-[24px]" data-aos="fade-up"
-                    data-aos-duration="2000" data-aos-delay="200">
+                    data-aos-duration="1000" data-aos-delay="200">
                     <div
                         class="bix-services mt-[30px] relative flex flex-col justify-center text-center rounded-[30px] bg-[#edf4b3]">
                         <div class="services-image mt-[-30px] flex justify-center relative">
@@ -585,7 +505,7 @@
                     </div>
                 </div>
                 <div class="min-[1200px]:w-[25%] min-[768px]:w-[50%] w-full px-[12px] mb-[24px]" data-aos="fade-up"
-                    data-aos-duration="2000" data-aos-delay="400">
+                    data-aos-duration="1000" data-aos-delay="400">
                     <div
                         class="bix-services mt-[30px] relative flex flex-col justify-center text-center rounded-[30px] bg-[#ffd5df]">
                         <div class="services-image mt-[-30px] flex justify-center relative">
@@ -606,7 +526,7 @@
                     </div>
                 </div>
                 <div class="min-[1200px]:w-[25%] min-[768px]:w-[50%] w-full px-[12px] mb-[24px]" data-aos="fade-up"
-                    data-aos-duration="2000" data-aos-delay="600">
+                    data-aos-duration="1000" data-aos-delay="400">
                     <div
                         class="bix-services mt-[30px] relative flex flex-col justify-center text-center rounded-[30px] bg-[#d5f5ff]">
                         <div class="services-image mt-[-30px] flex justify-center relative">
@@ -626,7 +546,7 @@
                     </div>
                 </div>
                 <div class="min-[1200px]:w-[25%] min-[768px]:w-[50%] w-full px-[12px] mb-[24px]" data-aos="fade-up"
-                    data-aos-duration="2000" data-aos-delay="800">
+                    data-aos-duration="1000" data-aos-delay="500">
                     <div
                         class="bix-services mt-[30px] relative flex flex-col justify-center text-center rounded-[30px] bg-[#d6ffd5]">
                         <div class="services-image mt-[-30px] flex justify-center relative">
@@ -646,7 +566,7 @@
                     </div>
                 </div>
                 <div class="min-[1200px]:w-[25%] min-[768px]:w-[50%] w-full px-[12px] mb-[24px]" data-aos="fade-up"
-                    data-aos-duration="2000" data-aos-delay="200">
+                    data-aos-duration="1000" data-aos-delay="200">
                     <div
                         class="bix-services mt-[30px] relative flex flex-col justify-center text-center rounded-[30px] bg-[#edf4b3]">
                         <div class="services-image mt-[-30px] flex justify-center relative">
@@ -667,7 +587,7 @@
                     </div>
                 </div>
                 <div class="min-[1200px]:w-[25%] min-[768px]:w-[50%] w-full px-[12px] mb-[24px]" data-aos="fade-up"
-                    data-aos-duration="2000" data-aos-delay="200">
+                    data-aos-duration="1000" data-aos-delay="200">
                     <div
                         class="bix-services mt-[30px] relative flex flex-col justify-center text-center rounded-[30px] bg-[#edf4b3]">
                         <div class="services-image mt-[-30px] flex justify-center relative">
@@ -687,7 +607,7 @@
                     </div>
                 </div>
                 <div class="min-[1200px]:w-[25%] min-[768px]:w-[50%] w-full px-[12px] mb-[24px]" data-aos="fade-up"
-                    data-aos-duration="2000" data-aos-delay="400">
+                    data-aos-duration="1000" data-aos-delay="400">
                     <div
                         class="bix-services mt-[30px] relative flex flex-col justify-center text-center rounded-[30px] bg-[#ffd5df]">
                         <div class="services-image mt-[-30px] flex justify-center relative">
@@ -707,7 +627,7 @@
                     </div>
                 </div>
                 <div class="min-[1200px]:w-[25%] min-[768px]:w-[50%] w-full px-[12px] mb-[24px]" data-aos="fade-up"
-                    data-aos-duration="2000" data-aos-delay="800">
+                    data-aos-duration="1000" data-aos-delay="500">
                     <div
                         class="bix-services mt-[30px] relative flex flex-col justify-center text-center rounded-[30px] bg-[#d6ffd5]">
                         <div class="services-image mt-[-30px] flex justify-center relative">
@@ -741,13 +661,13 @@
                             Devis <span class="text-[#f41a4a]">Rapide</span>
                         </h4>
                     </div>
-                    <div class="bix-banner-line mb-[50px]" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="600">
+                    <div class="bix-banner-line mb-[50px]" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
                         <span class="inner-border relative flex justify-center"></span>
                     </div>
                 </div>
 
                 <!-- Formulaire de devis -->
-                <div class="w-full px-[12px] pt-[60px]" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="800">
+                <div class="w-full px-[12px] pt-[60px]" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="800">
                     <form id="devisForm" class="space-y-12">
                         <!-- Type de projet -->
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -913,18 +833,18 @@
             <div class="flex flex-wrap w-full">
                 <div class="w-full px-[12px]">
                     <div class="bix-banner mb-[30px] flex justify-center text-center max-[1199px]:mb-[25px] max-[767px]:mb-[20px]"
-                        data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
+                        data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
                         <h4
                             class="font-montserrat text-[36px] font-bold text-[#111a24] tracking-[0.03rem] leading-[1.2] max-[1199px]:text-[32px] max-[767px]:text-[28px] max-[575px]:text-[24px]">
                             Ce Que J'ai <span class="text-[#f41a4a]">Réalisé</span></h4>
                     </div>
-                    <div class="bix-banner-line mb-[110px]" data-aos="fade-up" data-aos-duration="2000"
+                    <div class="bix-banner-line mb-[110px]" data-aos="fade-up" data-aos-duration="1000"
                         data-aos-delay="600">
                         <span class="inner-border relative flex justify-center"></span>
                     </div>
                 </div>
                 <div class="w-full projects-content">
-                    <div class="item-grid" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="300">
+                    <div class="item-grid" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
                         <div class="flex flex-wrap w-full mb-[-24px]">
                             <div
                                 class="min-[1200px]:w-[33.33%] min-[768px]:w-[50%] w-full px-[12px] mb-[24px] item web graphics applications">
@@ -1171,13 +1091,13 @@
             <div class="flex flex-wrap w-full">
                 <div class="w-full px-[12px]">
                     <div class="bix-banner mb-[30px] flex justify-center text-center max-[1199px]:mb-[25px] max-[767px]:mb-[20px]"
-                        data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
+                        data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
                         <h4
                             class="font-montserrat text-[36px] font-bold text-[#111a24] tracking-[0.03rem] leading-[1.2] max-[1199px]:text-[32px] max-[767px]:text-[28px] max-[575px]:text-[24px]">
                             Me <span class="text-[#f41a4a]">Contacter</span>
                         </h4>
                     </div>
-                    <div class="bix-banner-line mb-[110px]" data-aos="fade-up" data-aos-duration="2000"
+                    <div class="bix-banner-line mb-[110px]" data-aos="fade-up" data-aos-duration="1000"
                         data-aos-delay="600">
                         <span class="inner-border relative flex justify-center"></span>
                     </div>
@@ -1186,7 +1106,7 @@
                     <div class="flex flex-wrap w-full">
                         <!-- Informations de contact -->
                         <div class="min-[992px]:w-[40%] w-full px-[12px] mb-[30px]" data-aos="fade-right"
-                            data-aos-duration="2000" data-aos-delay="200">
+                            data-aos-duration="1000" data-aos-delay="200">
                             <div class="contact-info bg-[#f7f5fb] p-[40px] rounded-[30px] h-full">
                                 <h3 class="text-[24px] font-bold mb-[30px]">Informations</h3>
                                 <div class="contact-details space-y-[20px]">
@@ -1227,7 +1147,7 @@
                             </div>
                         </div>
                         <!-- Formulaire de contact -->
-                        <div class="min-[992px]:w-[60%] w-full px-[12px]" data-aos="fade-left" data-aos-duration="2000"
+                        <div class="min-[992px]:w-[60%] w-full px-[12px]" data-aos="fade-left" data-aos-duration="1000"
                             data-aos-delay="400">
                             <div class="contact-form bg-[#f7f5fb] p-[40px] rounded-[30px]">
                                 <form id="contactForm" class="space-y-[20px]">
@@ -1331,8 +1251,8 @@
     <!-- main-js -->
     <script src="assets/js/main.js"></script>
 
-    <script src="js/animations.js"></script>
-    <script src="js/contact.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/contact.js"></script>
 
     <!-- Notification -->
     <div id="notification"
@@ -1352,7 +1272,7 @@
     </div>
 
     <!-- Script pour le devis -->
-    <script src="js/devis.js"></script>
+    <script src="assets/js/devis.js"></script>
 
 </body>
 
