@@ -5,6 +5,16 @@
   var root = document.documentElement;
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* ---------- Mesure d'audience ----------
+     gtag est absent des que la page est servie hors production ou qu'un
+     bloqueur agit : aucun appel ne doit interrompre le reste du script. */
+  var track = function (name, params) {
+    if (typeof window.gtag !== "function") return;
+    try {
+      window.gtag("event", name, params || {});
+    } catch (e) {}
+  };
+
   /* ---------- Theme ---------- */
   var toggle = document.getElementById("theme-toggle");
   if (toggle) {
@@ -352,6 +362,8 @@
 
       estimate = {
         ref: refOut.textContent,
+        priceMin: price.min,
+        priceMax: price.max,
         type: typeLabel[t],
         choices: [complexityLabel[c], sizeLabel[s], designLabel[d]].join(", "),
         price: euro.format(price.min) + " à " + euro.format(price.max) + "\u00a0€",
@@ -367,7 +379,12 @@
       if (touched) syncEstimate();
     };
 
+    var startTracked = false;
     quote.addEventListener("change", function () {
+      if (!startTracked) {
+        startTracked = true;
+        track("estimation_start");
+      }
       touched = true;
       compute();
     });
@@ -408,11 +425,25 @@
     }
   }
 
+  /* Uniquement des valeurs issues de nos propres listes : le nom, l'email et
+     le message du visiteur ne partent jamais vers Google Analytics. */
+  function estimateParams() {
+    if (!estimate) return { has_estimate: "non" };
+    return {
+      has_estimate: "oui",
+      est_ref: estimate.ref,
+      project_type: estimate.type,
+      currency: "EUR",
+      value: Math.round((estimate.priceMin + estimate.priceMax) / 2)
+    };
+  }
+
   var simSend = document.getElementById("sim-send");
   if (simSend) {
     simSend.addEventListener("click", function () {
       touched = true;
       syncEstimate();
+      track("estimation_to_contact", estimateParams());
 
       var subject = document.getElementById("f-subject");
       var message = document.getElementById("f-message");
@@ -451,6 +482,7 @@
           "Écrivez directement à contact@swameta.fr, je réponds sous 24 h.",
           true
         );
+        track("form_error", { reason: "emailjs_indisponible" });
         return;
       }
       if (touched) syncEstimate();
@@ -466,6 +498,7 @@
         })
         .then(
           function () {
+            track("generate_lead", touched ? estimateParams() : { has_estimate: "non" });
             notify(
               "Message envoyé",
               estimate && touched
@@ -478,6 +511,7 @@
           },
           function () {
             notify("L'envoi a échoué", "Réessayez, ou écrivez à contact@swameta.fr.", true);
+            track("form_error", { reason: "envoi_refuse" });
           }
         )
         .finally(function () {
@@ -486,6 +520,19 @@
         });
     });
   }
+
+  /* ---------- Contacts directs ----------
+     Un mail ou un appel ne passe pas par le formulaire : sans cela ces
+     demandes, souvent les plus serieuses, restent invisibles. */
+  document.addEventListener("click", function (event) {
+    var el = event.target;
+    if (!el || !el.closest) return;
+    var link = el.closest('a[href^="mailto:"], a[href^="tel:"]');
+    if (!link) return;
+    track("contact_click", {
+      method: link.getAttribute("href").indexOf("tel:") === 0 ? "telephone" : "email"
+    });
+  });
 
   /* ---------- Annee ---------- */
   var year = document.getElementById("year");

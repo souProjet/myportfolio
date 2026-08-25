@@ -402,6 +402,19 @@ a { color: inherit; }
   padding-top: 1rem;
   border-top: var(--rule) solid currentColor;
 }
+.offer-more {
+  align-self: start;
+  margin-top: 1rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: var(--rule) solid currentColor;
+  padding-bottom: 0.2rem;
+}
 .offer-price small { display: block; font-family: var(--mono); font-size: 0.75rem; font-weight: 400; letter-spacing: 0.05em; color: var(--muted); margin-top: 0.3rem; }
 
 /* ---------- Realisations ---------- */
@@ -780,7 +793,45 @@ legend { padding: 0; }
   padding-top: 0.2rem;
 }
 .legal-list dd { margin: 0; }
-.legal-back { margin-top: 2.5rem; }
+.legal-back { margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 1rem; }
+
+/* ---------- Pages d'entree par intention ---------- */
+/* Coupe editoriale reservee aux largeurs ou la ligne tient reellement. */
+.br-lg { display: none; }
+@media (min-width: 760px) { .br-lg { display: inline; } }
+.svc h1 { font-size: clamp(1.75rem, 1.44rem + 2.17vw, 3.125rem); }
+/* Syne 800 en capitales avance vite : sous 560px des mots comme
+   "d'application" ne tiennent pas sur une ligne. La cesure francaise evite
+   d'avoir a reduire le corps des titres. */
+@media (max-width: 560px) {
+  .svc h1, .svc h2 { hyphens: auto; }
+}
+.svc p { max-width: 68ch; }
+.svc p + p { margin-top: 1.1rem; }
+.svc .head p { max-width: none; }
+.marks { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; max-width: 68ch; }
+.marks li { display: flex; gap: 0.9rem; align-items: baseline; }
+.marks li::before {
+  content: "";
+  flex: none;
+  width: 0.6rem;
+  height: 0.6rem;
+  background: currentColor;
+  transform: translateY(-0.1rem);
+}
+.svc p + .marks { margin-top: 1.4rem; }
+.faq { margin: 0; max-width: 68ch; }
+.faq > div { padding-block: 1.4rem; border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent); }
+.faq > div:first-child { border-top: 0; padding-top: 0; }
+.faq dt {
+  font-family: var(--display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  font-size: 1.0625rem;
+  margin-bottom: 0.6rem;
+}
+.faq dd { margin: 0; }
 @media (max-width: 600px) {
   .legal-list > div { grid-template-columns: minmax(0, 1fr); }
 }
