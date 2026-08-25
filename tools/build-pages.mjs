@@ -15,6 +15,57 @@ const SITE = "https://swannbougou.in";
 /* Gabarit partage                                                     */
 /* ------------------------------------------------------------------ */
 
+/* Fil d'Ariane : une realisation se range sous /#travaux, un service non. */
+const crumbs = (p) => {
+  const items = [{ name: "Accueil", item: `${SITE}/` }];
+  if (p.work) items.push({ name: "Réalisations", item: `${SITE}/#travaux` });
+  items.push({ name: p.breadcrumb, item: `${SITE}/${p.slug}` });
+  return items
+    .map(
+      (c, i) =>
+        `              { "@type": "ListItem", "position": ${i + 1}, "name": "${c.name}", "item": "${c.item}" }`
+    )
+    .join(",\n");
+};
+
+const PROVIDER = `{
+              "@type": "ProfessionalService",
+              "name": "Swameta",
+              "alternateName": "Swann Bougouin",
+              "url": "${SITE}/",
+              "email": "contact@swameta.fr",
+              "telephone": "+33602221182",
+              "address": { "@type": "PostalAddress", "addressLocality": "Nantes", "addressCountry": "FR" }
+            }`;
+
+const mainNode = (p) =>
+  p.work
+    ? `          {
+            "@type": "CreativeWork",
+            "name": "${p.work.name}",
+            "headline": "${p.work.name}",
+            "description": "${p.description}",
+            "url": "${SITE}/${p.slug}",
+            "inLanguage": "fr-FR",
+            "author": ${PROVIDER},
+            "about": {
+              "@type": "SoftwareApplication",
+              "name": "${p.work.name}",
+              "applicationCategory": "${p.work.category}",
+              "operatingSystem": "${p.work.os}",
+              "url": "${p.work.url}"
+            }
+          }`
+    : `          {
+            "@type": "Service",
+            "name": "${p.service.name}",
+            "description": "${p.description}",
+            "serviceType": "${p.service.type}",
+            "url": "${SITE}/${p.slug}",
+            "areaServed": ${JSON.stringify(p.service.area)},
+            "provider": ${PROVIDER}
+          }`;
+
 const head = (p) => `    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>${p.title}</title>
@@ -41,27 +92,10 @@ const head = (p) => `    <meta charset="UTF-8" />
           {
             "@type": "BreadcrumbList",
             "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "${SITE}/" },
-              { "@type": "ListItem", "position": 2, "name": "${p.breadcrumb}", "item": "${SITE}/${p.slug}" }
+${crumbs(p)}
             ]
           },
-          {
-            "@type": "Service",
-            "name": "${p.service.name}",
-            "description": "${p.description}",
-            "serviceType": "${p.service.type}",
-            "url": "${SITE}/${p.slug}",
-            "areaServed": ${JSON.stringify(p.service.area)},
-            "provider": {
-              "@type": "ProfessionalService",
-              "name": "Swameta",
-              "alternateName": "Swann Bougouin",
-              "url": "${SITE}/",
-              "email": "contact@swameta.fr",
-              "telephone": "+33602221182",
-              "address": { "@type": "PostalAddress", "addressLocality": "Nantes", "addressCountry": "FR" }
-            }
-          }
+${mainNode(p)}
         ]
       }
     </script>
@@ -120,11 +154,11 @@ const nav = `    <header class="nav" id="nav">
       </div>
     </header>`;
 
-const foot = (others) => `    <footer class="foot">
+const foot = () => `    <footer class="foot">
       <div class="shell foot-inner">
         <span>&copy; <span id="year">2026</span> Swann Bougouin / Swameta / Nantes</span>
         <nav aria-label="Pied de page">
-${others.map((o) => `          <a href="/${o.slug}">${o.footLabel}</a>`).join("\n")}
+${SERVICES.map((o) => `          <a href="/${o.slug}">${o.footLabel}</a>`).join("\n")}
           <a href="/mentions-legales.html">Mentions légales</a>
         </nav>
       </div>
@@ -180,7 +214,28 @@ ${items
   .join("\n")}
             </div>`;
 
-const render = (p, others) => `<!DOCTYPE html>
+const facts = (items) => `            <dl class="case-facts">
+${items
+  .map((i) => `              <div><dt>${i.k}</dt><dd>${i.v}</dd></div>`)
+  .join("\n")}
+            </dl>`;
+
+/* Renvoi vers les autres etudes de cas : maillage interne entre realisations. */
+const otherCases = (p) => `      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Autres réalisations</span>
+            <h2>Voir aussi</h2>
+          </div>
+          <p class="legal-back" data-reveal>
+${CASES.filter((c) => c.slug !== p.slug)
+  .map((c) => `            <a class="btn" href="/${c.slug}">${c.work.name}</a>`)
+  .join("\n")}
+          </p>
+        </div>
+      </section>`;
+
+const render = (p) => `<!DOCTYPE html>
 <html lang="fr">
   <head>
 <!-- Fichier genere par tools/build-pages.mjs : editez le script, pas ce fichier. -->
@@ -201,18 +256,23 @@ ${nav}
             <p class="lede">${p.lede}</p>
           </div>
           <p class="legal-back" data-reveal>
-            <a class="btn btn-solid" href="/#estimation">Estimer mon projet</a>
-            <a class="btn" href="/#contact">Me contacter</a>
+${
+  p.work
+    ? `            <a class="btn btn-solid" href="${p.work.url}" target="_blank" rel="noopener">Voir ${p.work.name} en ligne</a>
+            <a class="btn" href="/#contact">Parler d'un projet</a>`
+    : `            <a class="btn btn-solid" href="/#estimation">Estimer mon projet</a>
+            <a class="btn" href="/#contact">Me contacter</a>`
+}
           </p>
-        </div>
+${p.hero ? `          <div class="case-shot${p.heroClass || ""}" data-reveal>\n${p.hero}\n          </div>\n` : ""}${p.facts ? `          <div data-reveal>\n${facts(p.facts)}\n          </div>\n` : ""}        </div>
       </section>
 
 ${p.sections.map(band).join("\n\n")}
 
-${cta(p)}
+${p.work ? otherCases(p) + "\n\n" : ""}${cta(p)}
     </main>
 
-${foot(others)}
+${foot()}
 
     <script src="assets/js/app.js" defer></script>
   </body>
@@ -230,7 +290,7 @@ const VITRINES = [
   { url: "https://une-pause-en-soi.fr/", img: "unepauseensoi", name: "Une Pause En Soi", host: "une-pause-en-soi.fr", alt: "Site vitrine Une Pause En Soi" }
 ];
 
-const PAGES = [
+const SERVICES = [
   /* ---------------------------------------------------------------- */
   {
     slug: "creation-site-internet-nantes.html",
@@ -421,8 +481,8 @@ const PAGES = [
         lede: "Deux produits que j'ai conçus et développés de bout en bout, plus une plateforme sur laquelle j'interviens en équipe.",
         html: sites([
           { url: "https://selfsolution.fr/", img: "selfsolution", name: "SelfSolution", host: "selfsolution.fr", alt: "Page d'accueil de SelfSolution" },
-          { url: "https://zendra.fr/", img: "zendra", name: "Zendra", host: "zendra.fr", alt: "Page d'accueil de Zendra" },
-          { url: "https://splaze.io/", img: "splaze", name: "Splaze", host: "splaze.io", alt: "Page d'accueil de Splaze" }
+          { url: "https://zendra.pro/", img: "zendra", name: "Zendra", host: "zendra.pro", alt: "Page d'accueil de Zendra" },
+          { url: "https://splaze.fr/", img: "splaze", name: "Splaze", host: "splaze.fr", alt: "Page d'accueil de Splaze" }
         ]) + `
             <p style="margin-top:1.5rem">
               SelfSolution est un SaaS que je vends et que j'exploite, avec son
@@ -564,7 +624,7 @@ const PAGES = [
               sur beaucoup de projets mobiles.
             </p>
 ` + sites([
-          { url: "https://splaze.io/", img: "splaze", name: "Splaze", host: "splaze.io", alt: "Page d'accueil de Splaze" }
+          { url: "https://splaze.fr/", img: "splaze", name: "Splaze", host: "splaze.fr", alt: "Page d'accueil de Splaze" }
         ])
       },
       {
@@ -856,21 +916,615 @@ const PAGES = [
   }
 ];
 
+
+/* ------------------------------------------------------------------ */
+/* Etudes de cas                                                       */
+/* ------------------------------------------------------------------ */
+
+/* Visuel d'ouverture : meme fichier que l'accueil, affiche pleine largeur.
+   Charge en differe : le titre est l'element LCP, le visuel ne doit pas
+   disputer la bande passante a la police pendant le premier rendu. */
+const shot = (name, alt, ratio) =>
+  `            <img src="assets/img/${name}.webp"
+              srcset="assets/img/${name}-700.webp 700w, assets/img/${name}-1000.webp 1000w, assets/img/${name}.webp 1400w"
+              sizes="(min-width: 1240px) 1200px, 94vw" alt="${alt}" width="1400" height="${ratio}" loading="lazy" decoding="async" />`;
+
+const CASES = [
+  /* ---------------------------------------------------------------- */
+  {
+    slug: "realisation-splaze.html",
+    breadcrumb: "Splaze",
+    title: "Splaze : plateforme web et apps iOS et Android | Étude de cas",
+    description:
+      "Étude de cas Splaze : réunir les trophées PlayStation, Steam et Xbox dans un seul profil. Site et back-office Next.js, app iOS en Swift, app Android en Kotlin, synchronisation continue.",
+    kicker: "Étude de cas · Plateforme + apps mobiles",
+    h1: "Splaze, un profil unique <br class='br-lg' />pour trois plateformes",
+    lede:
+      "Réunir les jeux, les trophées et les succès d'un joueur venus de PlayStation, Steam et Xbox dans un seul profil, sur le web comme sur mobile. Quatre surfaces, une seule source de vérité.",
+    ctaTitle: "Un produit web <br class='br-lg' />et mobile ?",
+    work: { name: "Splaze", url: "https://splaze.fr", category: "GameApplication", os: "Web, iOS, Android" },
+    hero: shot("splaze", "Page d'accueil de Splaze", 875),
+    facts: [
+      { k: "Rôle", v: "Développeur produit, au sein de l'équipe" },
+      { k: "Surfaces", v: "Site public, back-office, application iOS, application Android" },
+      { k: "Technologies", v: "Next.js, Swift, Kotlin, Supabase, PostgreSQL, Node" },
+      { k: "État", v: "En production, plus de 1 800 joueurs inscrits" },
+      { k: "En ligne", v: "<a href=\"https://splaze.fr\" target=\"_blank\" rel=\"noopener\">splaze.fr</a>" }
+    ],
+    sections: [
+      {
+        kicker: "Le point de départ",
+        h2: "Une progression qui <br class='br-lg' />n'existe nulle part",
+        lede:
+          "Un joueur possède rarement une seule machine. Sa bibliothèque se répartit entre une console, un PC et parfois une deuxième console, et chaque écosystème garde jalousement ses données.",
+        html: `            <p>
+              PlayStation compte ses trophées, Steam ses succès, Xbox ses
+              points. Les trois utilisent un vocabulaire différent, un rythme de
+              mise à jour différent et une définition différente de ce qu'est
+              « terminer » un jeu. Résultat : quinze ans de parties existent en
+              trois morceaux, et nulle part en entier.
+            </p>
+            <p>
+              Splaze répond à ce manque. Un seul profil rassemble la
+              bibliothèque complète, la progression réelle par jeu, la
+              comparaison avec ses amis et le partage. Ce qui paraît simple vu
+              du visiteur suppose, derrière, de faire parler ensemble trois
+              sources qui n'ont pas été conçues pour cela.
+            </p>`
+      },
+      {
+        tone: "on-violet",
+        kicker: "Ce que je développe",
+        h2: "Quatre surfaces, <br class='br-lg' />un seul produit",
+        html: `            <p>
+              Je travaille sur l'ensemble du produit, du rendu d'un écran mobile
+              jusqu'aux traitements serveur qui tournent sans personne devant.
+            </p>
+` + marks([
+          "<strong>Le site public</strong> en Next.js : profils, bibliothèques, pages de jeux, comparaisons, tout ce qui doit être indexable et rapide au premier affichage",
+          "<strong>Le back-office</strong>, également en Next.js : administration du catalogue, des comptes et de ce qui part en production",
+          "<strong>L'application iOS</strong> en Swift, native, avec les composants et les gestes attendus sur la plateforme",
+          "<strong>L'application Android</strong> en Kotlin, native elle aussi, publiée sur le Google Play Store",
+          "<strong>Les traitements serveur</strong> en Node : synchronisation continue des comptes de jeu, alimentation de la base PostgreSQL derrière Supabase"
+        ]) + `
+            <p>
+              Le choix du natif sur mobile n'est pas un réflexe. Une application
+              qui affiche des milliers de vignettes, garde une bibliothèque
+              consultable hors connexion et se rafraîchit en tâche de fond
+              travaille sur le terrain où les couches intermédiaires coûtent le
+              plus cher. Deux bases de code séparées demandent plus de
+              discipline, mais donnent un produit qui se comporte comme le
+              système sur lequel il tourne.
+            </p>`
+      },
+      {
+        kicker: "Le vrai sujet",
+        h2: "La synchronisation, <br class='br-lg' />pas l'interface",
+        lede:
+          "Sur ce genre de produit, la difficulté n'est presque jamais l'écran. Elle est dans ce qui se passe entre deux écrans.",
+        html: `            <p>
+              Chaque plateforme expose ses données à sa façon : formats,
+              identifiants, granularité, fraîcheur. Un même jeu peut porter
+              trois noms, trois identifiants et trois listes de succès qui ne se
+              recouvrent pas exactement. Rapprocher tout cela demande un travail
+              de correspondance qui ne se voit pas et qui conditionne pourtant
+              la confiance du joueur : si sa progression est fausse, le produit
+              est mort.
+            </p>
+            <p>
+              La synchronisation tourne en continu, côté serveur, sans
+              intervention. Elle doit rester rejouable sans dupliquer,
+              reprendre après une coupure, et absorber le fait qu'une source
+              soit temporairement indisponible sans mettre le profil entier en
+              défaut. C'est cette partie invisible qui occupe la plus grande
+              part du travail.
+            </p>`
+      },
+      {
+        tone: "on-jaune",
+        kicker: "Travail collectif",
+        h2: "Une base de code <br class='br-lg' />partagée",
+        html: `            <p>
+              Je ne suis pas seul sur Splaze. Le produit avance au sein d'une
+              équipe, sur une base de code commune, avec des choix arbitrés à
+              plusieurs et un suivi partagé de ce qui part en production.
+            </p>
+            <p>
+              C'est une dimension que je tiens à afficher, parce qu'elle ne
+              s'improvise pas. Écrire du code que quelqu'un d'autre reprendra,
+              défendre une décision technique devant des personnes qui ne
+              partagent pas votre intuition, accepter d'en abandonner une, tenir
+              une convention même quand elle vous ralentit sur le moment : rien
+              de tout cela n'apparaît quand on travaille seul.
+            </p>
+            <p>
+              Pour un client, cela change une chose concrète. Un projet livré
+              par mes soins n'est pas un objet personnel illisible par le
+              suivant. Il est écrit pour être repris.
+            </p>`
+      },
+      {
+        kicker: "Où ça en est",
+        h2: "En production, <br class='br-lg' />sur trois magasins",
+        html: `            <p>
+              Splaze compte plus de 1 800 joueurs inscrits. Les deux
+              applications mobiles sont publiées : l'une sur l'App Store,
+              l'autre sur le Google Play Store, avec tout ce que cela suppose de
+              conformité, de fiches, de captures, de politiques de
+              confidentialité et de cycles de validation.
+            </p>
+            <p>
+              Passer la revue d'Apple et celle de Google n'est pas une
+              formalité. C'est une compétence en soi, faite de règles écrites
+              nulle part au même endroit, et c'est souvent là que les projets
+              mobiles s'enlisent. Je l'ai faite, deux fois, sur deux
+              plateformes.
+            </p>
+            <p>
+              <a class="case-link" href="https://splaze.fr" target="_blank" rel="noopener">splaze.fr &#8599;</a>
+            </p>`
+      },
+      {
+        kicker: "Questions fréquentes",
+        h2: "Ce qu'on me <br class='br-lg' />demande ensuite",
+        html: faq([
+          {
+            q: "Pouvez-vous faire la même chose pour mon produit ?",
+            a: "Si votre projet suppose un site, un back-office et une ou deux applications mobiles qui partagent les mêmes données, oui : c'est exactement la forme de Splaze. Voir la page <a href=\"/developpeur-application-mobile.html\">développeur d'application mobile</a> pour le cadre et les tarifs."
+          },
+            {
+            q: "Natif ou React Native ?",
+            a: "Cela dépend du produit. Une application riche en interactions, en affichage de listes longues ou en fonctionnement hors connexion gagne au natif. Une application de contenu, publiée vite sur les deux magasins avec un budget contenu, gagne au multiplateforme. Je pratique les deux et je vous dis lequel sert votre cas, pas lequel m'arrange."
+          },
+          {
+            q: "Combien de temps pour une application publiée ?",
+            a: "Comptez huit à quatorze semaines entre le cadrage et la mise en ligne sur les magasins pour une première version sérieuse, revue Apple et Google incluses. Le <a href=\"/#estimation\">simulateur</a> donne une fourchette en trente secondes."
+          },
+          {
+            q: "Qui possède le code ?",
+            a: "Sur mes missions client, vous. Le code source est livré sur votre dépôt Git à la fin du projet, sans dépendance à un compte que je contrôlerais."
+          }
+        ])
+      }
+    ]
+  },
+
+  /* ---------------------------------------------------------------- */
+  {
+    slug: "realisation-selfsolution.html",
+    breadcrumb: "Self Solution",
+    title: "Self Solution : un SaaS de comptabilité conçu et vendu | Étude de cas",
+    description:
+      "Étude de cas Self Solution : comptabilité pour indépendants et module Budget pour les particuliers. Produit conçu, développé, hébergé et commercialisé seul, abonnement Stripe compris.",
+    kicker: "Étude de cas · SaaS conçu et vendu",
+    h1: "Self Solution, un SaaS <br class='br-lg' />porté de bout en bout",
+    lede:
+      "Une comptabilité pour indépendants qui fait peu de choses et les fait bien. Conçu, développé, hébergé, facturé et suivi par une seule personne, abonnement récurrent compris.",
+    ctaTitle: "Un produit <br class='br-lg' />à mettre en vente ?",
+    work: { name: "Self Solution", url: "https://selfsolution.fr", category: "BusinessApplication", os: "Web" },
+    hero:
+      `            <img src="assets/img/selfsolution.webp"
+              srcset="assets/img/selfsolution-700.webp 700w, assets/img/selfsolution-1000.webp 1000w, assets/img/selfsolution.webp 1400w"
+              sizes="(min-width: 1240px) 1200px, 94vw" alt="Interface de Self Solution" width="1400" height="665" loading="lazy" decoding="async" />
+            <img src="assets/img/selfsolutionbudget.webp"
+              srcset="assets/img/selfsolutionbudget-700.webp 700w, assets/img/selfsolutionbudget-1000.webp 1000w, assets/img/selfsolutionbudget.webp 1400w"
+              sizes="(min-width: 1240px) 1200px, 94vw" alt="Interface de Self Solution Budget" width="1400" height="665" loading="lazy" decoding="async" />`,
+    heroClass: " case-shot-duo",
+    facts: [
+      { k: "Rôle", v: "Conception, développement, hébergement, commercialisation" },
+      { k: "Produits", v: "Self Solution pour les indépendants, Self Solution Budget pour les particuliers" },
+      { k: "Technologies", v: "Next.js, PostgreSQL, Stripe, Vercel" },
+      { k: "Modèle", v: "Abonnement récurrent" },
+      { k: "En ligne", v: "<a href=\"https://selfsolution.fr\" target=\"_blank\" rel=\"noopener\">selfsolution.fr</a>" }
+    ],
+    sections: [
+      {
+        kicker: "Le point de départ",
+        h2: "Entre le tableur <br class='br-lg' />et l'expert-comptable",
+        lede:
+          "Un freelance qui démarre n'a ni les moyens d'un cabinet au mois, ni la patience d'un classeur de calcul qu'il faut recoller chaque trimestre.",
+        html: `            <p>
+              Les logiciels de gestion existants visent des entreprises
+              constituées. Ils proposent la facturation, les devis, les
+              relances, la paie, les immobilisations, le multi-utilisateur, le
+              rapprochement bancaire automatique. Pour un indépendant seul, tout
+              cela se paye et ne se lit pas : il faut traverser quinze menus pour
+              savoir combien il reste à la fin du mois.
+            </p>
+            <p>
+              À l'autre extrémité, le tableur ne coûte rien et ne tient pas. Il
+              se casse dès qu'on change d'ordinateur, ne sait pas produire un
+              export propre et n'aide pas à repérer qu'un poste de dépense a
+              doublé.
+            </p>
+            <p>
+              Self Solution occupe l'espace entre les deux, volontairement
+              étroit.
+            </p>`
+      },
+      {
+        tone: "on-violet",
+        kicker: "Le produit",
+        h2: "Peu de choses, <br class='br-lg' />vraiment finies",
+        html: marks([
+          "Suivi des entrées et des sorties, saisie rapide, sans jargon comptable",
+          "Classement par catégories, avec un moteur de catégorisation qui apprend de vos habitudes de saisie",
+          "Statistiques lisibles : évolution mensuelle, répartition par poste, tendance",
+          "Exports exploitables, y compris pour transmettre à un comptable le moment venu",
+          "Rien d'autre : ni paie, ni immobilisations, ni modules qu'on paye sans jamais les ouvrir"
+        ]) + `
+            <p>
+              Ce dernier point est une décision de produit, pas une lacune.
+              Chaque fonctionnalité ajoutée coûte de la clarté à l'écran, de la
+              maintenance dans le temps et du support à traiter. Un outil qui
+              s'arrête là où le besoin s'arrête reste utilisable trois ans plus
+              tard.
+            </p>`
+      },
+      {
+        kicker: "Le produit dérivé",
+        h2: "Self Solution Budget, <br class='br-lg' />le même moteur",
+        lede:
+          "Le classement automatique des mouvements n'a rien de spécifiquement professionnel. Il fonctionne aussi bien sur le budget d'un foyer.",
+        html: `            <p>
+              Self Solution Budget est né de ce constat. C'est un module dérivé,
+              ouvert aux particuliers, qui reprend le même moteur de
+              catégorisation et les mêmes statistiques, appliqués aux dépenses
+              d'un ménage plutôt qu'à une activité professionnelle.
+            </p>
+            <p>
+              Techniquement, c'est le socle qui est partagé, pas l'interface : le
+              vocabulaire, les catégories par défaut et les écrans changent parce
+              que la personne en face n'a pas les mêmes questions. Un
+              indépendant veut savoir s'il a de quoi payer ses cotisations. Un
+              foyer veut savoir où part l'argent.
+            </p>
+            <p>
+              Un produit qui donne naissance à un second sans réécriture, c'est
+              le signe que le découpage initial était le bon. C'est aussi ce que
+              je cherche à obtenir sur les projets que je livre à des clients.
+            </p>`
+      },
+      {
+        tone: "on-jaune",
+        kicker: "Au-delà du code",
+        h2: "Vendre, c'est <br class='br-lg' />un autre métier",
+        html: `            <p>
+              Développer le produit n'était que la moitié du travail. Self
+              Solution est aussi facturé, hébergé et suivi par moi seul.
+            </p>
+` + marks([
+          "Abonnement récurrent branché sur Stripe : essai, paiement, changement de formule, échec de prélèvement, résiliation, chacun avec son cas limite",
+          "Hébergement sur Vercel, base PostgreSQL, sauvegardes et surveillance",
+          "Pages de vente, tarification, conditions générales, mentions obligatoires",
+          "Support : répondre soi-même aux utilisateurs, ce qui apprend très vite quels écrans sont mal fichus",
+          "Mises à jour dans la durée, sur un produit qui doit rester disponible pendant qu'on le modifie"
+        ]) + `
+            <p>
+              Cette expérience change la façon dont je conseille un client.
+              Quand quelqu'un me décrit une application à abonnement, je sais
+              quelles lignes du devis sont sous-estimées, où passe le temps après
+              le lancement, et quelles fonctionnalités on regrette d'avoir
+              promises.
+            </p>`
+      },
+      {
+        kicker: "Questions fréquentes",
+        h2: "Ce qu'on me <br class='br-lg' />demande ensuite",
+        html: faq([
+          {
+            q: "Pouvez-vous développer mon SaaS ?",
+            a: "Oui, c'est une partie centrale de mon activité. Le cadre, les étapes et les fourchettes sont détaillés sur la page <a href=\"/creation-application-web-saas.html\">création d'application web et SaaS</a>."
+          },
+          {
+            q: "Faut-il tout construire avant de vendre ?",
+            a: "Non, et c'est l'erreur la plus coûteuse. Une première version doit résoudre un problème précis pour un profil précis, être payante dès le premier jour, et se laisser corriger vite. Le reste s'ajoute quand des utilisateurs le réclament, pas avant."
+          },
+          {
+            q: "Combien coûte un premier SaaS ?",
+            a: "La fourchette dépend surtout du nombre de rôles utilisateurs et de la complexité de la facturation. Le <a href=\"/#estimation\">simulateur</a> donne un ordre de grandeur en trente secondes, sans inscription."
+          },
+          {
+            q: "Qui paye l'hébergement et Stripe ?",
+            a: "Vous, directement, sur vos propres comptes. Je les configure, mais ils restent à votre nom : c'est la seule façon de garantir que vous gardez la main sur votre produit et sur vos revenus."
+          }
+        ])
+      }
+    ]
+  },
+
+  /* ---------------------------------------------------------------- */
+  {
+    slug: "realisation-selenevasions.html",
+    breadcrumb: "SelenEvasion",
+    title: "SelenEvasion : un site de séjours de groupe qui génère des devis | Étude de cas",
+    description:
+      "Étude de cas SelenEvasion : présenter des séjours de groupe partout en France avec une carte interactive, une recherche par lieu et un réseau de 26 hôtels, pour déclencher des demandes de devis.",
+    kicker: "Étude de cas · Mission client",
+    h1: "SelenEvasion, un site <br class='br-lg' />qui déclenche des devis",
+    lede:
+      "Des séjours de groupe clé en main partout en France. L'enjeu du site n'était pas d'être joli : c'était qu'un responsable de groupe comprenne l'offre et demande un devis sans avoir à appeler.",
+    ctaTitle: "Un site qui doit <br class='br-lg' />faire venir des demandes",
+    work: { name: "SelenEvasion", url: "https://selenevasions.fr", category: "WebApplication", os: "Web" },
+    hero: shot("selenevasions", "Page d'accueil de SelenEvasion", 875),
+    facts: [
+      { k: "Rôle", v: "Mission client, conception et développement" },
+      { k: "Secteur", v: "Séjours de groupe : randonnée, cyclotourisme, patrimoine, cohésion d'équipe" },
+      { k: "Technologies", v: "Next.js, carte interactive, référencement, Vercel" },
+      { k: "Point clé", v: "Réseau de 26 hôtels et villages vacances à rendre lisible" },
+      { k: "En ligne", v: "<a href=\"https://selenevasions.fr\" target=\"_blank\" rel=\"noopener\">selenevasions.fr</a>" }
+    ],
+    sections: [
+      {
+        kicker: "Le point de départ",
+        h2: "Une offre riche, <br class='br-lg' />difficile à saisir",
+        lede:
+          "SelenEvasion organise des séjours de groupe clé en main dans toute la France : randonnée, cyclotourisme, découverte du patrimoine, cohésion d'équipe.",
+        html: `            <p>
+              Le problème d'une offre pareille n'est pas de manquer d'arguments.
+              C'est d'en avoir trop. Plusieurs thématiques, des dizaines de
+              destinations, un réseau d'hébergements, des formules qui varient
+              selon la taille du groupe et la saison : présenté à plat, cela
+              devient un catalogue qu'on ne lit pas.
+            </p>
+            <p>
+              Le visiteur, lui, arrive avec une question très étroite. Il
+              organise un séjour pour une association, un comité d'entreprise,
+              un club ou un groupe scolaire, il a une région en tête ou une
+              activité en tête, et il veut savoir en deux minutes si cette offre
+              correspond. S'il ne le sait pas, il ne téléphone pas : il ferme
+              l'onglet.
+            </p>`
+      },
+      {
+        tone: "on-violet",
+        kicker: "Le parti pris",
+        h2: "Entrer par la carte, <br class='br-lg' />pas par le menu",
+        html: `            <p>
+              La question spontanée d'un responsable de groupe est
+              géographique : « qu'est-ce qui existe autour de là où je veux
+              aller ? » Le site part de là.
+            </p>
+` + marks([
+          "Une <strong>carte interactive</strong> des destinations, sur laquelle on se repère sans lire une liste",
+          "Une <strong>recherche par lieu</strong>, pour les visiteurs qui savent déjà où ils vont",
+          "La mise en avant du <strong>réseau de 26 hôtels et villages vacances</strong>, qui transforme un argument abstrait en preuve concrète",
+          "Le <strong>téléchargement de la brochure</strong>, pour ceux qui doivent faire valider le projet par un comité",
+          "Une demande de devis accessible depuis n'importe quelle page, sans formulaire à rallonge"
+        ]) + `
+            <p>
+              La brochure mérite un mot. Dans ce métier, la décision se prend
+              rarement seul : le responsable doit présenter l'offre à d'autres
+              personnes, souvent hors ligne. Un document à emporter n'est pas un
+              gadget, c'est l'outil qui permet au dossier d'avancer entre deux
+              visites sur le site.
+            </p>`
+      },
+      {
+        kicker: "Référencement",
+        h2: "Être trouvé sur <br class='br-lg' />une intention précise",
+        lede:
+          "Les recherches de ce secteur sont longues et localisées, du type « séjour randonnée groupe Vercors » ou « village vacances groupe Auvergne ».",
+        html: `            <p>
+              Ce genre de requête ne se gagne pas avec une page d'accueil
+              généraliste. Il faut des pages qui existent réellement pour
+              chaque intention, avec un titre qui reprend les mots employés par
+              le visiteur, un contenu qui répond vraiment et une structure que
+              Google peut parcourir.
+            </p>
+            <p>
+              Le travail technique va avec : rendu côté serveur pour que le
+              contenu soit lisible sans exécuter de script, données structurées,
+              plan de site, images compressées et servies à la bonne taille,
+              affichage rapide sur un téléphone en 4G. Une carte interactive est
+              exactement le genre de composant qui plombe une page si on la
+              charge sans précaution.
+            </p>
+            <p>
+              C'est la même méthode que celle décrite sur la page
+              <a href="/creation-site-internet-nantes.html">création de site internet</a>,
+              appliquée à un secteur où la concurrence se joue sur des dizaines
+              de requêtes locales plutôt que sur une seule.
+            </p>`
+      },
+      {
+        tone: "on-jaune",
+        kicker: "Ce qu'il faut retenir",
+        h2: "Un site se juge <br class='br-lg' />sur les demandes",
+        html: `            <p>
+              Un site vitrine n'a qu'un seul indicateur qui compte : le nombre
+              de demandes qualifiées qu'il produit. Le reste, le nombre de
+              visites, le temps passé, la beauté de la page d'accueil, ne sert
+              qu'à expliquer ce chiffre.
+            </p>
+            <p>
+              C'est pour cette raison que je commence toujours par la même
+              question, avant le design : qui doit vous contacter, et
+              qu'est-ce qui l'en empêche aujourd'hui ? Sur SelenEvasion, la
+              réponse tenait dans la géographie et dans la preuve du réseau. Sur
+              votre projet, elle sera ailleurs.
+            </p>
+            <p>
+              <a class="case-link" href="https://selenevasions.fr" target="_blank" rel="noopener">selenevasions.fr &#8599;</a>
+            </p>`
+      },
+      {
+        kicker: "Questions fréquentes",
+        h2: "Ce qu'on me <br class='br-lg' />demande ensuite",
+        html: faq([
+          {
+            q: "Travaillez-vous en dehors de Nantes ?",
+            a: "Oui. Le cadrage et le suivi se font en visio, et je me déplace en Loire-Atlantique quand une rencontre facilite les choses. SelenEvasion couvre toute la France."
+          },
+          {
+            q: "Combien coûte un site de ce type ?",
+            a: "Un site vitrine soigné démarre à 450 €. Un site avec carte interactive, recherche et pages de destinations se situe au-dessus : le <a href=\"/#estimation\">simulateur</a> donne la fourchette selon le nombre de pages et de fonctionnalités."
+          },
+          {
+            q: "Mon site actuel est daté, faut-il tout refaire ?",
+            a: "Pas toujours. Parfois la structure tient et seul l'habillage est à reprendre. La page <a href=\"/refonte-site-internet.html\">refonte de site internet</a> détaille comment je tranche entre retouche et reconstruction."
+          },
+          {
+            q: "Pouvez-vous reprendre un site fait par quelqu'un d'autre ?",
+            a: "Oui, à condition d'avoir accès au code et à l'hébergement. Je commence par un état des lieux écrit avant de m'engager sur un devis."
+          }
+        ])
+      }
+    ]
+  },
+
+  /* ---------------------------------------------------------------- */
+  {
+    slug: "realisation-zendra.html",
+    breadcrumb: "Zendra",
+    title: "Zendra : recherche sémantique dans ses documents | Étude de cas",
+    description:
+      "Étude de cas Zendra : un assistant documentaire qui classe les fichiers à l'arrivée, cherche par le sens plutôt que par mots-clés et répond en langage naturel. Conçu et commercialisé seul.",
+    kicker: "Étude de cas · SaaS conçu et vendu",
+    h1: "Zendra, retrouver un document <br class='br-lg' />sans le mot exact",
+    lede:
+      "La recherche par mots-clés échoue dès qu'on ne se souvient plus du terme employé dans le fichier. Zendra cherche par le sens, classe à l'arrivée et répond aux questions posées en français.",
+    ctaTitle: "Une idée de produit <br class='br-lg' />à mettre au monde ?",
+    work: { name: "Zendra", url: "https://zendra.pro", category: "BusinessApplication", os: "Web" },
+    hero: shot("zendra", "Page d'accueil de Zendra", 875),
+    facts: [
+      { k: "Rôle", v: "Conception, développement, commercialisation" },
+      { k: "Nature", v: "Assistant documentaire, recherche sémantique et questions en langage naturel" },
+      { k: "Technologies", v: "Next.js, PostgreSQL, recherche sémantique, Stripe" },
+      { k: "Modèle", v: "Abonnement récurrent" },
+      { k: "En ligne", v: "<a href=\"https://zendra.pro\" target=\"_blank\" rel=\"noopener\">zendra.pro</a>" }
+    ],
+    sections: [
+      {
+        kicker: "Le point de départ",
+        h2: "La recherche par <br class='br-lg' />mots-clés ne suffit plus",
+        lede:
+          "Tout le monde a déjà cherché un document dont il se rappelait le contenu, mais pas le titre, pas la date, pas le mot exact qui s'y trouvait.",
+        html: `            <p>
+              Un moteur classique compare des chaînes de caractères. Si le
+              fichier dit « avenant au contrat de prestation » et que vous tapez
+              « modification du devis », il ne renvoie rien, alors que c'est le
+              même document. Plus une base de documents grossit, plus cet écart
+              coûte cher : le fichier existe, il est au bon endroit, et il reste
+              introuvable.
+            </p>
+            <p>
+              Le second problème est le rangement. Personne ne classe ses
+              documents au moment où il les reçoit, parce que c'est
+              précisément le moment où l'on a autre chose à faire. Six mois plus
+              tard, le dossier est un tas.
+            </p>`
+      },
+      {
+        tone: "on-violet",
+        kicker: "Le produit",
+        h2: "Chercher par le sens, <br class='br-lg' />pas par la lettre",
+        html: marks([
+          "<strong>Classement à l'arrivée</strong> : chaque document est analysé et rangé au moment où il entre, sans action de l'utilisateur",
+          "<strong>Recherche sémantique</strong> : la requête est comparée au sens du contenu, pas à ses caractères, donc « modification du devis » retrouve « avenant au contrat »",
+          "<strong>Questions en langage naturel</strong> : on demande ce qu'on veut savoir, et la réponse cite les documents sur lesquels elle s'appuie",
+          "<strong>Une base qui reste la vôtre</strong> : les fichiers ne servent qu'à répondre à vos questions"
+        ]) + `
+            <p>
+              Le point sensible d'un produit de ce genre est la confiance. Une
+              réponse en langage naturel qui ne montre pas d'où elle vient ne
+              vaut rien : l'utilisateur ne peut pas la vérifier, donc il ne
+              l'utilise pas. Rattacher chaque réponse à ses sources est moins
+              spectaculaire à démontrer, mais c'est ce qui fait la différence
+              entre un gadget et un outil de travail.
+            </p>`
+      },
+      {
+        kicker: "Sous le capot",
+        h2: "Une pile volontairement <br class='br-lg' />ordinaire",
+        lede:
+          "Next.js pour l'interface et le rendu, PostgreSQL pour les données et les vecteurs, Stripe pour l'abonnement. Rien d'exotique, et c'est délibéré.",
+        html: `            <p>
+              La recherche sémantique se construit en transformant chaque
+              passage de document en une représentation numérique, puis en
+              comparant la question à ces représentations. Cette mécanique peut
+              se loger dans une base spécialisée de plus, avec sa facture, son
+              tableau de bord et son mode de panne propre. Elle tient aussi dans
+              PostgreSQL, à côté du reste des données.
+            </p>
+            <p>
+              J'ai choisi la seconde option. Une brique de moins à surveiller,
+              une sauvegarde unique, une facture unique, et la possibilité de
+              joindre les résultats de recherche aux données métier dans la même
+              requête. Sur un produit porté par une seule personne, réduire le
+              nombre de choses susceptibles de tomber la nuit vaut plus qu'un
+              gain de performance théorique.
+            </p>
+            <p>
+              C'est le raisonnement que j'applique aussi chez mes clients :
+              choisir la plus petite architecture qui répond vraiment au besoin
+              d'aujourd'hui, et laisser la porte ouverte plutôt que de construire
+              la salle en avance.
+            </p>`
+      },
+      {
+        tone: "on-jaune",
+        kicker: "Du premier écran à la facture",
+        h2: "Un produit mené <br class='br-lg' />jusqu'à la vente",
+        html: `            <p>
+              Zendra est conçu, développé et commercialisé seul, du premier
+              écran à l'abonnement récurrent. La partie visible, la recherche,
+              n'est qu'un morceau : il a fallu décider du positionnement, écrire
+              les pages de vente, fixer un prix, brancher les paiements, tenir
+              l'hébergement et répondre aux utilisateurs.
+            </p>
+            <p>
+              Comme pour <a href="/realisation-selfsolution.html">Self Solution</a>,
+              c'est cette partie-là qui apprend le plus. On découvre vite que la
+              fonctionnalité dont on était le plus fier n'est pas celle qui
+              déclenche l'abonnement, et qu'un écran de départ mal fichu coûte
+              plus d'utilisateurs qu'un défaut technique.
+            </p>
+            <p>
+              <a class="case-link" href="https://zendra.pro" target="_blank" rel="noopener">zendra.pro &#8599;</a>
+            </p>`
+      },
+      {
+        kicker: "Questions fréquentes",
+        h2: "Ce qu'on me <br class='br-lg' />demande ensuite",
+        html: faq([
+          {
+            q: "Pouvez-vous ajouter ce type de recherche à mon outil existant ?",
+            a: "Oui, c'est souvent plus rapide que de créer un produit à part : la recherche sémantique s'ajoute à une base déjà en place. Il faut d'abord regarder comment vos documents sont stockés aujourd'hui."
+          },
+          {
+            q: "Où partent les documents ?",
+            a: "Cela se décide au cadrage, et cela dépend de vos contraintes : hébergement en Europe, fournisseur de modèle, durée de conservation. Sur un projet client, ces réponses figurent au devis avant la première ligne de code."
+          },
+          {
+            q: "Faut-il forcément de l'IA dans mon produit ?",
+            a: "Non. Beaucoup de projets qui arrivent avec « il faut de l'IA » se règlent mieux avec une recherche bien indexée et un formulaire clair. Je le dis quand c'est le cas : cela vous coûte moins cher et cela tombe moins souvent en panne."
+          },
+          {
+            q: "Comment démarrer un projet avec vous ?",
+            a: "Par le <a href=\"/#estimation\">simulateur</a> pour un ordre de grandeur, puis un échange de trente minutes. Voir aussi la page <a href=\"/developpeur-web-freelance-nantes.html\">développeur web freelance</a> pour ma façon de travailler."
+          }
+        ])
+      }
+    ]
+  }
+];
+
 /* ------------------------------------------------------------------ */
 /* Ecriture                                                            */
 /* ------------------------------------------------------------------ */
 
 mkdirSync(ROOT, { recursive: true });
-for (const p of PAGES) {
-  const others = PAGES.filter((o) => o.slug !== p.slug);
-  writeFileSync(path.join(ROOT, p.slug), render(p, others), "utf8");
+for (const p of [...SERVICES, ...CASES]) {
+  writeFileSync(path.join(ROOT, p.slug), render(p), "utf8");
   console.log("ecrit", p.slug);
 }
 
 /* Sitemap regenere a partir de la meme source. */
 const urls = [
   { loc: `${SITE}/`, freq: "monthly" },
-  ...PAGES.map((p) => ({ loc: `${SITE}/${p.slug}`, freq: "monthly" })),
+  ...SERVICES.map((p) => ({ loc: `${SITE}/${p.slug}`, freq: "monthly" })),
+  ...CASES.map((p) => ({ loc: `${SITE}/${p.slug}`, freq: "yearly" })),
   { loc: `${SITE}/mentions-legales.html`, freq: "yearly" }
 ];
 writeFileSync(

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+<!-- Fichier genere par tools/build-pages.mjs : editez le script, pas ce fichier. -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SelenEvasion : un site de séjours de groupe qui génère des devis | Étude de cas</title>
+    <meta name="description" content="Étude de cas SelenEvasion : présenter des séjours de groupe partout en France avec une carte interactive, une recherche par lieu et un réseau de 26 hôtels, pour déclencher des demandes de devis." />
+    <link rel="canonical" href="https://swannbougou.in/realisation-selenevasions.html" />
+    <link rel="icon" href="assets/img/logo.png" />
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Swann Bougouin" />
+    <meta property="og:title" content="SelenEvasion : un site de séjours de groupe qui génère des devis | Étude de cas" />
+    <meta property="og:description" content="Étude de cas SelenEvasion : présenter des séjours de groupe partout en France avec une carte interactive, une recherche par lieu et un réseau de 26 hôtels, pour déclencher des demandes de devis." />
+    <meta property="og:url" content="https://swannbougou.in/realisation-selenevasions.html" />
+    <meta property="og:image" content="https://swannbougou.in/assets/img/cover.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://swannbougou.in/" },
+              { "@type": "ListItem", "position": 2, "name": "Réalisations", "item": "https://swannbougou.in/#travaux" },
+              { "@type": "ListItem", "position": 3, "name": "SelenEvasion", "item": "https://swannbougou.in/realisation-selenevasions.html" }
+            ]
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "SelenEvasion",
+            "headline": "SelenEvasion",
+            "description": "Étude de cas SelenEvasion : présenter des séjours de groupe partout en France avec une carte interactive, une recherche par lieu et un réseau de 26 hôtels, pour déclencher des demandes de devis.",
+            "url": "https://swannbougou.in/realisation-selenevasions.html",
+            "inLanguage": "fr-FR",
+            "author": {
+              "@type": "ProfessionalService",
+              "name": "Swameta",
+              "alternateName": "Swann Bougouin",
+              "url": "https://swannbougou.in/",
+              "email": "contact@swameta.fr",
+              "telephone": "+33602221182",
+              "address": { "@type": "PostalAddress", "addressLocality": "Nantes", "addressCountry": "FR" }
+            },
+            "about": {
+              "@type": "SoftwareApplication",
+              "name": "SelenEvasion",
+              "applicationCategory": "WebApplication",
+              "operatingSystem": "Web",
+              "url": "https://selenevasions.fr"
+            }
+          }
+        ]
+      }
+    </script>
+
+    <script>
+      // Applique le theme avant le premier rendu pour eviter le flash.
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t === "light" || t === "dark")
+            document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="preload" as="font" type="font/woff2"
+      href="assets/fonts/web/syne-400_800.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2"
+      href="assets/fonts/web/archivo-400_700.woff2" crossorigin />
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J2QM7C3N3S"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-J2QM7C3N3S");
+    </script>
+  </head>
+
+  <body id="top">
+    <a href="#contenu" class="sr">Aller au contenu</a>
+
+    <header class="nav" id="nav">
+      <div class="nav-inner">
+        <a class="brand" href="/">Swann Bougouin</a>
+
+        <nav aria-label="Principale">
+          <ul class="nav-links">
+            <li><a href="/#travaux">Réalisations</a></li>
+            <li><a href="/#methode">Méthode</a></li>
+            <li><a href="/#parcours">Parcours</a></li>
+            <li><a href="/#estimation">Estimation</a></li>
+            <li><a href="/#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-tools">
+          <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="Changer de thème">
+            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4.2" />
+              <path d="M12 2.6v2.2M12 19.2v2.2M4.2 12H2M22 12h-2.2M6.3 6.3 4.8 4.8M19.2 19.2l-1.5-1.5M17.7 6.3l1.5-1.5M4.8 19.2l1.5-1.5" />
+            </svg>
+            <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.5 14.3A8.5 8.5 0 1 1 9.7 3.5a6.8 6.8 0 0 0 10.8 10.8Z" />
+            </svg>
+          </button>
+          <a class="btn btn-solid" href="/#estimation">Estimer mon projet</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenu">
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Étude de cas · Mission client</span>
+            <h1>SelenEvasion, un site <br class='br-lg' />qui déclenche des devis</h1>
+            <p class="lede">Des séjours de groupe clé en main partout en France. L'enjeu du site n'était pas d'être joli : c'était qu'un responsable de groupe comprenne l'offre et demande un devis sans avoir à appeler.</p>
+          </div>
+          <p class="legal-back" data-reveal>
+            <a class="btn btn-solid" href="https://selenevasions.fr" target="_blank" rel="noopener">Voir SelenEvasion en ligne</a>
+            <a class="btn" href="/#contact">Parler d'un projet</a>
+          </p>
+          <div class="case-shot" data-reveal>
+            <img src="assets/img/selenevasions.webp"
+              srcset="assets/img/selenevasions-700.webp 700w, assets/img/selenevasions-1000.webp 1000w, assets/img/selenevasions.webp 1400w"
+              sizes="(min-width: 1240px) 1200px, 94vw" alt="Page d'accueil de SelenEvasion" width="1400" height="875" loading="lazy" decoding="async" />
+          </div>
+          <div data-reveal>
+            <dl class="case-facts">
+              <div><dt>Rôle</dt><dd>Mission client, conception et développement</dd></div>
+              <div><dt>Secteur</dt><dd>Séjours de groupe : randonnée, cyclotourisme, patrimoine, cohésion d'équipe</dd></div>
+              <div><dt>Technologies</dt><dd>Next.js, carte interactive, référencement, Vercel</dd></div>
+              <div><dt>Point clé</dt><dd>Réseau de 26 hôtels et villages vacances à rendre lisible</dd></div>
+              <div><dt>En ligne</dt><dd><a href="https://selenevasions.fr" target="_blank" rel="noopener">selenevasions.fr</a></dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Le point de départ</span>
+            <h2>Une offre riche, <br class='br-lg' />difficile à saisir</h2>
+            <p class="lede">SelenEvasion organise des séjours de groupe clé en main dans toute la France : randonnée, cyclotourisme, découverte du patrimoine, cohésion d'équipe.</p>
+          </div>
+          <div data-reveal>
+            <p>
+              Le problème d'une offre pareille n'est pas de manquer d'arguments.
+              C'est d'en avoir trop. Plusieurs thématiques, des dizaines de
+              destinations, un réseau d'hébergements, des formules qui varient
+              selon la taille du groupe et la saison : présenté à plat, cela
+              devient un catalogue qu'on ne lit pas.
+            </p>
+            <p>
+              Le visiteur, lui, arrive avec une question très étroite. Il
+              organise un séjour pour une association, un comité d'entreprise,
+              un club ou un groupe scolaire, il a une région en tête ou une
+              activité en tête, et il veut savoir en deux minutes si cette offre
+              correspond. S'il ne le sait pas, il ne téléphone pas : il ferme
+              l'onglet.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band on-violet">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Le parti pris</span>
+            <h2>Entrer par la carte, <br class='br-lg' />pas par le menu</h2>
+          </div>
+          <div data-reveal>
+            <p>
+              La question spontanée d'un responsable de groupe est
+              géographique : « qu'est-ce qui existe autour de là où je veux
+              aller ? » Le site part de là.
+            </p>
+            <ul class="marks">
+              <li>Une <strong>carte interactive</strong> des destinations, sur laquelle on se repère sans lire une liste</li>
+              <li>Une <strong>recherche par lieu</strong>, pour les visiteurs qui savent déjà où ils vont</li>
+              <li>La mise en avant du <strong>réseau de 26 hôtels et villages vacances</strong>, qui transforme un argument abstrait en preuve concrète</li>
+              <li>Le <strong>téléchargement de la brochure</strong>, pour ceux qui doivent faire valider le projet par un comité</li>
+              <li>Une demande de devis accessible depuis n'importe quelle page, sans formulaire à rallonge</li>
+            </ul>
+            <p>
+              La brochure mérite un mot. Dans ce métier, la décision se prend
+              rarement seul : le responsable doit présenter l'offre à d'autres
+              personnes, souvent hors ligne. Un document à emporter n'est pas un
+              gadget, c'est l'outil qui permet au dossier d'avancer entre deux
+              visites sur le site.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Référencement</span>
+            <h2>Être trouvé sur <br class='br-lg' />une intention précise</h2>
+            <p class="lede">Les recherches de ce secteur sont longues et localisées, du type « séjour randonnée groupe Vercors » ou « village vacances groupe Auvergne ».</p>
+          </div>
+          <div data-reveal>
+            <p>
+              Ce genre de requête ne se gagne pas avec une page d'accueil
+              généraliste. Il faut des pages qui existent réellement pour
+              chaque intention, avec un titre qui reprend les mots employés par
+              le visiteur, un contenu qui répond vraiment et une structure que
+              Google peut parcourir.
+            </p>
+            <p>
+              Le travail technique va avec : rendu côté serveur pour que le
+              contenu soit lisible sans exécuter de script, données structurées,
+              plan de site, images compressées et servies à la bonne taille,
+              affichage rapide sur un téléphone en 4G. Une carte interactive est
+              exactement le genre de composant qui plombe une page si on la
+              charge sans précaution.
+            </p>
+            <p>
+              C'est la même méthode que celle décrite sur la page
+              <a href="/creation-site-internet-nantes.html">création de site internet</a>,
+              appliquée à un secteur où la concurrence se joue sur des dizaines
+              de requêtes locales plutôt que sur une seule.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band on-jaune">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Ce qu'il faut retenir</span>
+            <h2>Un site se juge <br class='br-lg' />sur les demandes</h2>
+          </div>
+          <div data-reveal>
+            <p>
+              Un site vitrine n'a qu'un seul indicateur qui compte : le nombre
+              de demandes qualifiées qu'il produit. Le reste, le nombre de
+              visites, le temps passé, la beauté de la page d'accueil, ne sert
+              qu'à expliquer ce chiffre.
+            </p>
+            <p>
+              C'est pour cette raison que je commence toujours par la même
+              question, avant le design : qui doit vous contacter, et
+              qu'est-ce qui l'en empêche aujourd'hui ? Sur SelenEvasion, la
+              réponse tenait dans la géographie et dans la preuve du réseau. Sur
+              votre projet, elle sera ailleurs.
+            </p>
+            <p>
+              <a class="case-link" href="https://selenevasions.fr" target="_blank" rel="noopener">selenevasions.fr &#8599;</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Questions fréquentes</span>
+            <h2>Ce qu'on me <br class='br-lg' />demande ensuite</h2>
+          </div>
+          <div data-reveal>
+            <dl class="faq">
+              <div><dt>Travaillez-vous en dehors de Nantes ?</dt><dd>Oui. Le cadrage et le suivi se font en visio, et je me déplace en Loire-Atlantique quand une rencontre facilite les choses. SelenEvasion couvre toute la France.</dd></div>
+              <div><dt>Combien coûte un site de ce type ?</dt><dd>Un site vitrine soigné démarre à 450 €. Un site avec carte interactive, recherche et pages de destinations se situe au-dessus : le <a href="/#estimation">simulateur</a> donne la fourchette selon le nombre de pages et de fonctionnalités.</dd></div>
+              <div><dt>Mon site actuel est daté, faut-il tout refaire ?</dt><dd>Pas toujours. Parfois la structure tient et seul l'habillage est à reprendre. La page <a href="/refonte-site-internet.html">refonte de site internet</a> détaille comment je tranche entre retouche et reconstruction.</dd></div>
+              <div><dt>Pouvez-vous reprendre un site fait par quelqu'un d'autre ?</dt><dd>Oui, à condition d'avoir accès au code et à l'hébergement. Je commence par un état des lieux écrit avant de m'engager sur un devis.</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Autres réalisations</span>
+            <h2>Voir aussi</h2>
+          </div>
+          <p class="legal-back" data-reveal>
+            <a class="btn" href="/realisation-splaze.html">Splaze</a>
+            <a class="btn" href="/realisation-selfsolution.html">Self Solution</a>
+            <a class="btn" href="/realisation-zendra.html">Zendra</a>
+          </p>
+        </div>
+      </section>
+
+      <section class="band on-ink">
+        <div class="shell">
+          <div class="head" data-reveal>
+            <span class="kicker">Étape suivante</span>
+            <h2>Un site qui doit <br class='br-lg' />faire venir des demandes</h2>
+            <p class="lede">
+              Le simulateur donne une fourchette en trente secondes, sans
+              inscription. Elle part avec votre message si vous décidez de
+              m'écrire, et je réponds sous 24 heures ouvrées.
+            </p>
+          </div>
+          <p class="legal-back">
+            <a class="btn btn-solid" href="/#estimation">Estimer mon projet</a>
+            <a class="btn" href="/#contact">Écrire directement</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="shell foot-inner">
+        <span>&copy; <span id="year">2026</span> Swann Bougouin / Swameta / Nantes</span>
+        <nav aria-label="Pied de page">
+          <a href="/creation-site-internet-nantes.html">Site internet</a>
+          <a href="/creation-application-web-saas.html">Application web</a>
+          <a href="/developpeur-application-mobile.html">Application mobile</a>
+          <a href="/developpeur-web-freelance-nantes.html">Freelance</a>
+          <a href="/refonte-site-internet.html">Refonte</a>
+          <a href="/mentions-legales.html">Mentions légales</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="assets/js/app.js" defer></script>
+  </body>
+</html>

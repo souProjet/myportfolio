@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+<!-- Fichier genere par tools/build-pages.mjs : editez le script, pas ce fichier. -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Self Solution : un SaaS de comptabilité conçu et vendu | Étude de cas</title>
+    <meta name="description" content="Étude de cas Self Solution : comptabilité pour indépendants et module Budget pour les particuliers. Produit conçu, développé, hébergé et commercialisé seul, abonnement Stripe compris." />
+    <link rel="canonical" href="https://swannbougou.in/realisation-selfsolution.html" />
+    <link rel="icon" href="assets/img/logo.png" />
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Swann Bougouin" />
+    <meta property="og:title" content="Self Solution : un SaaS de comptabilité conçu et vendu | Étude de cas" />
+    <meta property="og:description" content="Étude de cas Self Solution : comptabilité pour indépendants et module Budget pour les particuliers. Produit conçu, développé, hébergé et commercialisé seul, abonnement Stripe compris." />
+    <meta property="og:url" content="https://swannbougou.in/realisation-selfsolution.html" />
+    <meta property="og:image" content="https://swannbougou.in/assets/img/cover.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://swannbougou.in/" },
+              { "@type": "ListItem", "position": 2, "name": "Réalisations", "item": "https://swannbougou.in/#travaux" },
+              { "@type": "ListItem", "position": 3, "name": "Self Solution", "item": "https://swannbougou.in/realisation-selfsolution.html" }
+            ]
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "Self Solution",
+            "headline": "Self Solution",
+            "description": "Étude de cas Self Solution : comptabilité pour indépendants et module Budget pour les particuliers. Produit conçu, développé, hébergé et commercialisé seul, abonnement Stripe compris.",
+            "url": "https://swannbougou.in/realisation-selfsolution.html",
+            "inLanguage": "fr-FR",
+            "author": {
+              "@type": "ProfessionalService",
+              "name": "Swameta",
+              "alternateName": "Swann Bougouin",
+              "url": "https://swannbougou.in/",
+              "email": "contact@swameta.fr",
+              "telephone": "+33602221182",
+              "address": { "@type": "PostalAddress", "addressLocality": "Nantes", "addressCountry": "FR" }
+            },
+            "about": {
+              "@type": "SoftwareApplication",
+              "name": "Self Solution",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web",
+              "url": "https://selfsolution.fr"
+            }
+          }
+        ]
+      }
+    </script>
+
+    <script>
+      // Applique le theme avant le premier rendu pour eviter le flash.
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t === "light" || t === "dark")
+            document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="preload" as="font" type="font/woff2"
+      href="assets/fonts/web/syne-400_800.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2"
+      href="assets/fonts/web/archivo-400_700.woff2" crossorigin />
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J2QM7C3N3S"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-J2QM7C3N3S");
+    </script>
+  </head>
+
+  <body id="top">
+    <a href="#contenu" class="sr">Aller au contenu</a>
+
+    <header class="nav" id="nav">
+      <div class="nav-inner">
+        <a class="brand" href="/">Swann Bougouin</a>
+
+        <nav aria-label="Principale">
+          <ul class="nav-links">
+            <li><a href="/#travaux">Réalisations</a></li>
+            <li><a href="/#methode">Méthode</a></li>
+            <li><a href="/#parcours">Parcours</a></li>
+            <li><a href="/#estimation">Estimation</a></li>
+            <li><a href="/#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-tools">
+          <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="Changer de thème">
+            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4.2" />
+              <path d="M12 2.6v2.2M12 19.2v2.2M4.2 12H2M22 12h-2.2M6.3 6.3 4.8 4.8M19.2 19.2l-1.5-1.5M17.7 6.3l1.5-1.5M4.8 19.2l1.5-1.5" />
+            </svg>
+            <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.5 14.3A8.5 8.5 0 1 1 9.7 3.5a6.8 6.8 0 0 0 10.8 10.8Z" />
+            </svg>
+          </button>
+          <a class="btn btn-solid" href="/#estimation">Estimer mon projet</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenu">
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Étude de cas · SaaS conçu et vendu</span>
+            <h1>Self Solution, un SaaS <br class='br-lg' />porté de bout en bout</h1>
+            <p class="lede">Une comptabilité pour indépendants qui fait peu de choses et les fait bien. Conçu, développé, hébergé, facturé et suivi par une seule personne, abonnement récurrent compris.</p>
+          </div>
+          <p class="legal-back" data-reveal>
+            <a class="btn btn-solid" href="https://selfsolution.fr" target="_blank" rel="noopener">Voir Self Solution en ligne</a>
+            <a class="btn" href="/#contact">Parler d'un projet</a>
+          </p>
+          <div class="case-shot case-shot-duo" data-reveal>
+            <img src="assets/img/selfsolution.webp"
+              srcset="assets/img/selfsolution-700.webp 700w, assets/img/selfsolution-1000.webp 1000w, assets/img/selfsolution.webp 1400w"
+              sizes="(min-width: 1240px) 1200px, 94vw" alt="Interface de Self Solution" width="1400" height="665" loading="lazy" decoding="async" />
+            <img src="assets/img/selfsolutionbudget.webp"
+              srcset="assets/img/selfsolutionbudget-700.webp 700w, assets/img/selfsolutionbudget-1000.webp 1000w, assets/img/selfsolutionbudget.webp 1400w"
+              sizes="(min-width: 1240px) 1200px, 94vw" alt="Interface de Self Solution Budget" width="1400" height="665" loading="lazy" decoding="async" />
+          </div>
+          <div data-reveal>
+            <dl class="case-facts">
+              <div><dt>Rôle</dt><dd>Conception, développement, hébergement, commercialisation</dd></div>
+              <div><dt>Produits</dt><dd>Self Solution pour les indépendants, Self Solution Budget pour les particuliers</dd></div>
+              <div><dt>Technologies</dt><dd>Next.js, PostgreSQL, Stripe, Vercel</dd></div>
+              <div><dt>Modèle</dt><dd>Abonnement récurrent</dd></div>
+              <div><dt>En ligne</dt><dd><a href="https://selfsolution.fr" target="_blank" rel="noopener">selfsolution.fr</a></dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Le point de départ</span>
+            <h2>Entre le tableur <br class='br-lg' />et l'expert-comptable</h2>
+            <p class="lede">Un freelance qui démarre n'a ni les moyens d'un cabinet au mois, ni la patience d'un classeur de calcul qu'il faut recoller chaque trimestre.</p>
+          </div>
+          <div data-reveal>
+            <p>
+              Les logiciels de gestion existants visent des entreprises
+              constituées. Ils proposent la facturation, les devis, les
+              relances, la paie, les immobilisations, le multi-utilisateur, le
+              rapprochement bancaire automatique. Pour un indépendant seul, tout
+              cela se paye et ne se lit pas : il faut traverser quinze menus pour
+              savoir combien il reste à la fin du mois.
+            </p>
+            <p>
+              À l'autre extrémité, le tableur ne coûte rien et ne tient pas. Il
+              se casse dès qu'on change d'ordinateur, ne sait pas produire un
+              export propre et n'aide pas à repérer qu'un poste de dépense a
+              doublé.
+            </p>
+            <p>
+              Self Solution occupe l'espace entre les deux, volontairement
+              étroit.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band on-violet">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Le produit</span>
+            <h2>Peu de choses, <br class='br-lg' />vraiment finies</h2>
+          </div>
+          <div data-reveal>
+            <ul class="marks">
+              <li>Suivi des entrées et des sorties, saisie rapide, sans jargon comptable</li>
+              <li>Classement par catégories, avec un moteur de catégorisation qui apprend de vos habitudes de saisie</li>
+              <li>Statistiques lisibles : évolution mensuelle, répartition par poste, tendance</li>
+              <li>Exports exploitables, y compris pour transmettre à un comptable le moment venu</li>
+              <li>Rien d'autre : ni paie, ni immobilisations, ni modules qu'on paye sans jamais les ouvrir</li>
+            </ul>
+            <p>
+              Ce dernier point est une décision de produit, pas une lacune.
+              Chaque fonctionnalité ajoutée coûte de la clarté à l'écran, de la
+              maintenance dans le temps et du support à traiter. Un outil qui
+              s'arrête là où le besoin s'arrête reste utilisable trois ans plus
+              tard.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Le produit dérivé</span>
+            <h2>Self Solution Budget, <br class='br-lg' />le même moteur</h2>
+            <p class="lede">Le classement automatique des mouvements n'a rien de spécifiquement professionnel. Il fonctionne aussi bien sur le budget d'un foyer.</p>
+          </div>
+          <div data-reveal>
+            <p>
+              Self Solution Budget est né de ce constat. C'est un module dérivé,
+              ouvert aux particuliers, qui reprend le même moteur de
+              catégorisation et les mêmes statistiques, appliqués aux dépenses
+              d'un ménage plutôt qu'à une activité professionnelle.
+            </p>
+            <p>
+              Techniquement, c'est le socle qui est partagé, pas l'interface : le
+              vocabulaire, les catégories par défaut et les écrans changent parce
+              que la personne en face n'a pas les mêmes questions. Un
+              indépendant veut savoir s'il a de quoi payer ses cotisations. Un
+              foyer veut savoir où part l'argent.
+            </p>
+            <p>
+              Un produit qui donne naissance à un second sans réécriture, c'est
+              le signe que le découpage initial était le bon. C'est aussi ce que
+              je cherche à obtenir sur les projets que je livre à des clients.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band on-jaune">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Au-delà du code</span>
+            <h2>Vendre, c'est <br class='br-lg' />un autre métier</h2>
+          </div>
+          <div data-reveal>
+            <p>
+              Développer le produit n'était que la moitié du travail. Self
+              Solution est aussi facturé, hébergé et suivi par moi seul.
+            </p>
+            <ul class="marks">
+              <li>Abonnement récurrent branché sur Stripe : essai, paiement, changement de formule, échec de prélèvement, résiliation, chacun avec son cas limite</li>
+              <li>Hébergement sur Vercel, base PostgreSQL, sauvegardes et surveillance</li>
+              <li>Pages de vente, tarification, conditions générales, mentions obligatoires</li>
+              <li>Support : répondre soi-même aux utilisateurs, ce qui apprend très vite quels écrans sont mal fichus</li>
+              <li>Mises à jour dans la durée, sur un produit qui doit rester disponible pendant qu'on le modifie</li>
+            </ul>
+            <p>
+              Cette expérience change la façon dont je conseille un client.
+              Quand quelqu'un me décrit une application à abonnement, je sais
+              quelles lignes du devis sont sous-estimées, où passe le temps après
+              le lancement, et quelles fonctionnalités on regrette d'avoir
+              promises.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Questions fréquentes</span>
+            <h2>Ce qu'on me <br class='br-lg' />demande ensuite</h2>
+          </div>
+          <div data-reveal>
+            <dl class="faq">
+              <div><dt>Pouvez-vous développer mon SaaS ?</dt><dd>Oui, c'est une partie centrale de mon activité. Le cadre, les étapes et les fourchettes sont détaillés sur la page <a href="/creation-application-web-saas.html">création d'application web et SaaS</a>.</dd></div>
+              <div><dt>Faut-il tout construire avant de vendre ?</dt><dd>Non, et c'est l'erreur la plus coûteuse. Une première version doit résoudre un problème précis pour un profil précis, être payante dès le premier jour, et se laisser corriger vite. Le reste s'ajoute quand des utilisateurs le réclament, pas avant.</dd></div>
+              <div><dt>Combien coûte un premier SaaS ?</dt><dd>La fourchette dépend surtout du nombre de rôles utilisateurs et de la complexité de la facturation. Le <a href="/#estimation">simulateur</a> donne un ordre de grandeur en trente secondes, sans inscription.</dd></div>
+              <div><dt>Qui paye l'hébergement et Stripe ?</dt><dd>Vous, directement, sur vos propres comptes. Je les configure, mais ils restent à votre nom : c'est la seule façon de garantir que vous gardez la main sur votre produit et sur vos revenus.</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Autres réalisations</span>
+            <h2>Voir aussi</h2>
+          </div>
+          <p class="legal-back" data-reveal>
+            <a class="btn" href="/realisation-splaze.html">Splaze</a>
+            <a class="btn" href="/realisation-selenevasions.html">SelenEvasion</a>
+            <a class="btn" href="/realisation-zendra.html">Zendra</a>
+          </p>
+        </div>
+      </section>
+
+      <section class="band on-ink">
+        <div class="shell">
+          <div class="head" data-reveal>
+            <span class="kicker">Étape suivante</span>
+            <h2>Un produit <br class='br-lg' />à mettre en vente ?</h2>
+            <p class="lede">
+              Le simulateur donne une fourchette en trente secondes, sans
+              inscription. Elle part avec votre message si vous décidez de
+              m'écrire, et je réponds sous 24 heures ouvrées.
+            </p>
+          </div>
+          <p class="legal-back">
+            <a class="btn btn-solid" href="/#estimation">Estimer mon projet</a>
+            <a class="btn" href="/#contact">Écrire directement</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="shell foot-inner">
+        <span>&copy; <span id="year">2026</span> Swann Bougouin / Swameta / Nantes</span>
+        <nav aria-label="Pied de page">
+          <a href="/creation-site-internet-nantes.html">Site internet</a>
+          <a href="/creation-application-web-saas.html">Application web</a>
+          <a href="/developpeur-application-mobile.html">Application mobile</a>
+          <a href="/developpeur-web-freelance-nantes.html">Freelance</a>
+          <a href="/refonte-site-internet.html">Refonte</a>
+          <a href="/mentions-legales.html">Mentions légales</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="assets/js/app.js" defer></script>
+  </body>
+</html>

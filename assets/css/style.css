@@ -464,6 +464,9 @@ a { color: inherit; }
   padding-bottom: 0.15rem;
 }
 .case-link:hover { background: var(--violet); color: #ffffff; border-bottom-color: var(--ink); }
+.case-links { margin: 0; display: flex; flex-wrap: wrap; gap: 0.9rem 1.6rem; }
+.case-link-out { border-bottom-color: color-mix(in srgb, currentColor 35%, transparent); color: var(--muted); }
+.case-link-out:hover { color: #ffffff; }
 .case-shot { border: var(--rule-thick) solid var(--ink); box-shadow: var(--drop) var(--drop) 0 var(--violet); background: var(--paper); }
 .case-shot img { aspect-ratio: 16 / 10; object-fit: cover; object-position: top center; width: 100%; }
 .case-shot-duo img { aspect-ratio: 16 / 7.6; }
@@ -775,16 +778,16 @@ legend { padding: 0; }
   border-top: var(--rule) solid currentColor;
 }
 .legal p { max-width: 68ch; }
-.legal-list { margin: 0; display: grid; gap: 0; max-width: 68ch; }
-.legal-list > div {
+.legal-list, .case-facts { margin: 0; display: grid; gap: 0; max-width: 68ch; }
+.legal-list > div, .case-facts > div {
   display: grid;
   grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
   gap: 0.35rem 1.5rem;
   padding-block: 0.7rem;
   border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
 }
-.legal-list > div:first-child { border-top: 0; }
-.legal-list dt {
+.legal-list > div:first-child, .case-facts > div:first-child { border-top: 0; }
+.legal-list dt, .case-facts dt {
   font-family: var(--mono);
   font-size: 0.6875rem;
   letter-spacing: 0.12em;
@@ -792,7 +795,7 @@ legend { padding: 0; }
   color: var(--muted);
   padding-top: 0.2rem;
 }
-.legal-list dd { margin: 0; }
+.legal-list dd, .case-facts dd { margin: 0; }
 .legal-back { margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 1rem; }
 
 /* ---------- Pages d'entree par intention ---------- */
@@ -832,8 +835,12 @@ legend { padding: 0; }
   margin-bottom: 0.6rem;
 }
 .faq dd { margin: 0; }
+
+/* ---------- Etudes de cas ---------- */
+.svc .case-shot { margin-top: 3rem; }
+.svc .case-facts { margin-top: 2.75rem; }
 @media (max-width: 600px) {
-  .legal-list > div { grid-template-columns: minmax(0, 1fr); }
+  .legal-list > div, .case-facts > div { grid-template-columns: minmax(0, 1fr); }
 }
 /* Le @ capitalise en Space Mono se lit comme un « a » : on garde la casse reelle. */
 .foot a[href^="mailto:"] { text-transform: none; letter-spacing: 0.04em; }

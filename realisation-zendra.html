@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+<!-- Fichier genere par tools/build-pages.mjs : editez le script, pas ce fichier. -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zendra : recherche sémantique dans ses documents | Étude de cas</title>
+    <meta name="description" content="Étude de cas Zendra : un assistant documentaire qui classe les fichiers à l'arrivée, cherche par le sens plutôt que par mots-clés et répond en langage naturel. Conçu et commercialisé seul." />
+    <link rel="canonical" href="https://swannbougou.in/realisation-zendra.html" />
+    <link rel="icon" href="assets/img/logo.png" />
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Swann Bougouin" />
+    <meta property="og:title" content="Zendra : recherche sémantique dans ses documents | Étude de cas" />
+    <meta property="og:description" content="Étude de cas Zendra : un assistant documentaire qui classe les fichiers à l'arrivée, cherche par le sens plutôt que par mots-clés et répond en langage naturel. Conçu et commercialisé seul." />
+    <meta property="og:url" content="https://swannbougou.in/realisation-zendra.html" />
+    <meta property="og:image" content="https://swannbougou.in/assets/img/cover.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://swannbougou.in/" },
+              { "@type": "ListItem", "position": 2, "name": "Réalisations", "item": "https://swannbougou.in/#travaux" },
+              { "@type": "ListItem", "position": 3, "name": "Zendra", "item": "https://swannbougou.in/realisation-zendra.html" }
+            ]
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "Zendra",
+            "headline": "Zendra",
+            "description": "Étude de cas Zendra : un assistant documentaire qui classe les fichiers à l'arrivée, cherche par le sens plutôt que par mots-clés et répond en langage naturel. Conçu et commercialisé seul.",
+            "url": "https://swannbougou.in/realisation-zendra.html",
+            "inLanguage": "fr-FR",
+            "author": {
+              "@type": "ProfessionalService",
+              "name": "Swameta",
+              "alternateName": "Swann Bougouin",
+              "url": "https://swannbougou.in/",
+              "email": "contact@swameta.fr",
+              "telephone": "+33602221182",
+              "address": { "@type": "PostalAddress", "addressLocality": "Nantes", "addressCountry": "FR" }
+            },
+            "about": {
+              "@type": "SoftwareApplication",
+              "name": "Zendra",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web",
+              "url": "https://zendra.pro"
+            }
+          }
+        ]
+      }
+    </script>
+
+    <script>
+      // Applique le theme avant le premier rendu pour eviter le flash.
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t === "light" || t === "dark")
+            document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="preload" as="font" type="font/woff2"
+      href="assets/fonts/web/syne-400_800.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2"
+      href="assets/fonts/web/archivo-400_700.woff2" crossorigin />
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J2QM7C3N3S"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-J2QM7C3N3S");
+    </script>
+  </head>
+
+  <body id="top">
+    <a href="#contenu" class="sr">Aller au contenu</a>
+
+    <header class="nav" id="nav">
+      <div class="nav-inner">
+        <a class="brand" href="/">Swann Bougouin</a>
+
+        <nav aria-label="Principale">
+          <ul class="nav-links">
+            <li><a href="/#travaux">Réalisations</a></li>
+            <li><a href="/#methode">Méthode</a></li>
+            <li><a href="/#parcours">Parcours</a></li>
+            <li><a href="/#estimation">Estimation</a></li>
+            <li><a href="/#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-tools">
+          <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="Changer de thème">
+            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4.2" />
+              <path d="M12 2.6v2.2M12 19.2v2.2M4.2 12H2M22 12h-2.2M6.3 6.3 4.8 4.8M19.2 19.2l-1.5-1.5M17.7 6.3l1.5-1.5M4.8 19.2l1.5-1.5" />
+            </svg>
+            <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.5 14.3A8.5 8.5 0 1 1 9.7 3.5a6.8 6.8 0 0 0 10.8 10.8Z" />
+            </svg>
+          </button>
+          <a class="btn btn-solid" href="/#estimation">Estimer mon projet</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenu">
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Étude de cas · SaaS conçu et vendu</span>
+            <h1>Zendra, retrouver un document <br class='br-lg' />sans le mot exact</h1>
+            <p class="lede">La recherche par mots-clés échoue dès qu'on ne se souvient plus du terme employé dans le fichier. Zendra cherche par le sens, classe à l'arrivée et répond aux questions posées en français.</p>
+          </div>
+          <p class="legal-back" data-reveal>
+            <a class="btn btn-solid" href="https://zendra.pro" target="_blank" rel="noopener">Voir Zendra en ligne</a>
+            <a class="btn" href="/#contact">Parler d'un projet</a>
+          </p>
+          <div class="case-shot" data-reveal>
+            <img src="assets/img/zendra.webp"
+              srcset="assets/img/zendra-700.webp 700w, assets/img/zendra-1000.webp 1000w, assets/img/zendra.webp 1400w"
+              sizes="(min-width: 1240px) 1200px, 94vw" alt="Page d'accueil de Zendra" width="1400" height="875" loading="lazy" decoding="async" />
+          </div>
+          <div data-reveal>
+            <dl class="case-facts">
+              <div><dt>Rôle</dt><dd>Conception, développement, commercialisation</dd></div>
+              <div><dt>Nature</dt><dd>Assistant documentaire, recherche sémantique et questions en langage naturel</dd></div>
+              <div><dt>Technologies</dt><dd>Next.js, PostgreSQL, recherche sémantique, Stripe</dd></div>
+              <div><dt>Modèle</dt><dd>Abonnement récurrent</dd></div>
+              <div><dt>En ligne</dt><dd><a href="https://zendra.pro" target="_blank" rel="noopener">zendra.pro</a></dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Le point de départ</span>
+            <h2>La recherche par <br class='br-lg' />mots-clés ne suffit plus</h2>
+            <p class="lede">Tout le monde a déjà cherché un document dont il se rappelait le contenu, mais pas le titre, pas la date, pas le mot exact qui s'y trouvait.</p>
+          </div>
+          <div data-reveal>
+            <p>
+              Un moteur classique compare des chaînes de caractères. Si le
+              fichier dit « avenant au contrat de prestation » et que vous tapez
+              « modification du devis », il ne renvoie rien, alors que c'est le
+              même document. Plus une base de documents grossit, plus cet écart
+              coûte cher : le fichier existe, il est au bon endroit, et il reste
+              introuvable.
+            </p>
+            <p>
+              Le second problème est le rangement. Personne ne classe ses
+              documents au moment où il les reçoit, parce que c'est
+              précisément le moment où l'on a autre chose à faire. Six mois plus
+              tard, le dossier est un tas.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band on-violet">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Le produit</span>
+            <h2>Chercher par le sens, <br class='br-lg' />pas par la lettre</h2>
+          </div>
+          <div data-reveal>
+            <ul class="marks">
+              <li><strong>Classement à l'arrivée</strong> : chaque document est analysé et rangé au moment où il entre, sans action de l'utilisateur</li>
+              <li><strong>Recherche sémantique</strong> : la requête est comparée au sens du contenu, pas à ses caractères, donc « modification du devis » retrouve « avenant au contrat »</li>
+              <li><strong>Questions en langage naturel</strong> : on demande ce qu'on veut savoir, et la réponse cite les documents sur lesquels elle s'appuie</li>
+              <li><strong>Une base qui reste la vôtre</strong> : les fichiers ne servent qu'à répondre à vos questions</li>
+            </ul>
+            <p>
+              Le point sensible d'un produit de ce genre est la confiance. Une
+              réponse en langage naturel qui ne montre pas d'où elle vient ne
+              vaut rien : l'utilisateur ne peut pas la vérifier, donc il ne
+              l'utilise pas. Rattacher chaque réponse à ses sources est moins
+              spectaculaire à démontrer, mais c'est ce qui fait la différence
+              entre un gadget et un outil de travail.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Sous le capot</span>
+            <h2>Une pile volontairement <br class='br-lg' />ordinaire</h2>
+            <p class="lede">Next.js pour l'interface et le rendu, PostgreSQL pour les données et les vecteurs, Stripe pour l'abonnement. Rien d'exotique, et c'est délibéré.</p>
+          </div>
+          <div data-reveal>
+            <p>
+              La recherche sémantique se construit en transformant chaque
+              passage de document en une représentation numérique, puis en
+              comparant la question à ces représentations. Cette mécanique peut
+              se loger dans une base spécialisée de plus, avec sa facture, son
+              tableau de bord et son mode de panne propre. Elle tient aussi dans
+              PostgreSQL, à côté du reste des données.
+            </p>
+            <p>
+              J'ai choisi la seconde option. Une brique de moins à surveiller,
+              une sauvegarde unique, une facture unique, et la possibilité de
+              joindre les résultats de recherche aux données métier dans la même
+              requête. Sur un produit porté par une seule personne, réduire le
+              nombre de choses susceptibles de tomber la nuit vaut plus qu'un
+              gain de performance théorique.
+            </p>
+            <p>
+              C'est le raisonnement que j'applique aussi chez mes clients :
+              choisir la plus petite architecture qui répond vraiment au besoin
+              d'aujourd'hui, et laisser la porte ouverte plutôt que de construire
+              la salle en avance.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band on-jaune">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Du premier écran à la facture</span>
+            <h2>Un produit mené <br class='br-lg' />jusqu'à la vente</h2>
+          </div>
+          <div data-reveal>
+            <p>
+              Zendra est conçu, développé et commercialisé seul, du premier
+              écran à l'abonnement récurrent. La partie visible, la recherche,
+              n'est qu'un morceau : il a fallu décider du positionnement, écrire
+              les pages de vente, fixer un prix, brancher les paiements, tenir
+              l'hébergement et répondre aux utilisateurs.
+            </p>
+            <p>
+              Comme pour <a href="/realisation-selfsolution.html">Self Solution</a>,
+              c'est cette partie-là qui apprend le plus. On découvre vite que la
+              fonctionnalité dont on était le plus fier n'est pas celle qui
+              déclenche l'abonnement, et qu'un écran de départ mal fichu coûte
+              plus d'utilisateurs qu'un défaut technique.
+            </p>
+            <p>
+              <a class="case-link" href="https://zendra.pro" target="_blank" rel="noopener">zendra.pro &#8599;</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Questions fréquentes</span>
+            <h2>Ce qu'on me <br class='br-lg' />demande ensuite</h2>
+          </div>
+          <div data-reveal>
+            <dl class="faq">
+              <div><dt>Pouvez-vous ajouter ce type de recherche à mon outil existant ?</dt><dd>Oui, c'est souvent plus rapide que de créer un produit à part : la recherche sémantique s'ajoute à une base déjà en place. Il faut d'abord regarder comment vos documents sont stockés aujourd'hui.</dd></div>
+              <div><dt>Où partent les documents ?</dt><dd>Cela se décide au cadrage, et cela dépend de vos contraintes : hébergement en Europe, fournisseur de modèle, durée de conservation. Sur un projet client, ces réponses figurent au devis avant la première ligne de code.</dd></div>
+              <div><dt>Faut-il forcément de l'IA dans mon produit ?</dt><dd>Non. Beaucoup de projets qui arrivent avec « il faut de l'IA » se règlent mieux avec une recherche bien indexée et un formulaire clair. Je le dis quand c'est le cas : cela vous coûte moins cher et cela tombe moins souvent en panne.</dd></div>
+              <div><dt>Comment démarrer un projet avec vous ?</dt><dd>Par le <a href="/#estimation">simulateur</a> pour un ordre de grandeur, puis un échange de trente minutes. Voir aussi la page <a href="/developpeur-web-freelance-nantes.html">développeur web freelance</a> pour ma façon de travailler.</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Autres réalisations</span>
+            <h2>Voir aussi</h2>
+          </div>
+          <p class="legal-back" data-reveal>
+            <a class="btn" href="/realisation-splaze.html">Splaze</a>
+            <a class="btn" href="/realisation-selfsolution.html">Self Solution</a>
+            <a class="btn" href="/realisation-selenevasions.html">SelenEvasion</a>
+          </p>
+        </div>
+      </section>
+
+      <section class="band on-ink">
+        <div class="shell">
+          <div class="head" data-reveal>
+            <span class="kicker">Étape suivante</span>
+            <h2>Une idée de produit <br class='br-lg' />à mettre au monde ?</h2>
+            <p class="lede">
+              Le simulateur donne une fourchette en trente secondes, sans
+              inscription. Elle part avec votre message si vous décidez de
+              m'écrire, et je réponds sous 24 heures ouvrées.
+            </p>
+          </div>
+          <p class="legal-back">
+            <a class="btn btn-solid" href="/#estimation">Estimer mon projet</a>
+            <a class="btn" href="/#contact">Écrire directement</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="shell foot-inner">
+        <span>&copy; <span id="year">2026</span> Swann Bougouin / Swameta / Nantes</span>
+        <nav aria-label="Pied de page">
+          <a href="/creation-site-internet-nantes.html">Site internet</a>
+          <a href="/creation-application-web-saas.html">Application web</a>
+          <a href="/developpeur-application-mobile.html">Application mobile</a>
+          <a href="/developpeur-web-freelance-nantes.html">Freelance</a>
+          <a href="/refonte-site-internet.html">Refonte</a>
+          <a href="/mentions-legales.html">Mentions légales</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="assets/js/app.js" defer></script>
+  </body>
+</html>
