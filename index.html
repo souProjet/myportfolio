@@ -7,7 +7,7 @@
 
     <meta
       name="description"
-      content="Développeur indépendant à Nantes. Sites vitrines, applications web, SaaS et applications iOS et Android. Du cadrage à la mise en ligne, un seul interlocuteur. Estimation en ligne en 30 secondes."
+      content="Développeur indépendant à Nantes : sites vitrines, applications web, SaaS et apps iOS et Android. Du cadrage à la mise en ligne, un seul interlocuteur."
     />
     <meta name="author" content="Swann Bougouin" />
     <meta name="robots" content="index, follow" />
@@ -15,6 +15,9 @@
     <meta name="geo.placename" content="Nantes" />
     <link rel="canonical" href="https://swannbougou.in/" />
     <link rel="icon" href="assets/img/logo.png" />
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_FR" />
@@ -26,6 +29,9 @@
       content="Sites, applications web et applications iOS et Android. Du cadrage à la mise en ligne, un seul interlocuteur."
     />
     <meta property="og:image" content="https://swannbougou.in/assets/img/cover.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Swann Bougouin, développeur web et mobile à Nantes" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Swann Bougouin | Développeur web et mobile à Nantes" />
     <meta
@@ -33,6 +39,7 @@
       content="Sites, applications web et applications iOS et Android. Du cadrage à la mise en ligne, un seul interlocuteur."
     />
     <meta name="twitter:image" content="https://swannbougou.in/assets/img/cover.png" />
+    <meta name="twitter:image:alt" content="Swann Bougouin, développeur web et mobile à Nantes" />
 
     <script>
       // Applique le theme avant le premier rendu pour eviter le flash.
@@ -49,30 +56,148 @@
       href="assets/fonts/web/syne-400_800.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2"
       href="assets/fonts/web/archivo-400_700.woff2" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="stylesheet" href="assets/css/style.css" />
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Swann Bougouin",
-        "jobTitle": "Développeur full-stack et mobile",
-        "url": "https://swannbougou.in/",
-        "image": "https://swannbougou.in/assets/img/cover.png",
-        "email": "contact@swameta.fr",
-        "description": "Développeur full-stack et mobile à Nantes. Web en Next.js, iOS en Swift, Android en Kotlin, back-end PostgreSQL et workers Node.",
-        "knowsAbout": ["Next.js", "React", "TypeScript", "React Native", "Swift", "Kotlin", "Node.js", "PostgreSQL", "Supabase", "Stripe"],
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Nantes",
-          "addressRegion": "Pays de la Loire",
-          "addressCountry": "FR"
-        },
-        "worksFor": { "@type": "Organization", "name": "Swameta" },
-        "sameAs": [
-          "https://github.com/souProjet",
-          "https://fr.linkedin.com/in/swann-bougouin-8bb9b91ba",
-          "https://www.instagram.com/swametadev"
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://swannbougou.in/#swann",
+            "name": "Swann Bougouin",
+            "jobTitle": "Développeur full-stack et mobile",
+            "url": "https://swannbougou.in/",
+            "image": "https://swannbougou.in/assets/img/swann.webp",
+            "email": "contact@swameta.fr",
+            "description": "Développeur full-stack et mobile à Nantes. Web en Next.js, iOS en Swift, Android en Kotlin, back-end PostgreSQL et workers Node.",
+            "knowsAbout": [
+              "Next.js",
+              "React",
+              "TypeScript",
+              "React Native",
+              "Swift",
+              "Kotlin",
+              "Node.js",
+              "PostgreSQL",
+              "Supabase",
+              "Stripe"
+            ],
+            "knowsLanguage": [
+              "fr",
+              "en"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Nantes",
+              "addressRegion": "Pays de la Loire",
+              "addressCountry": "FR"
+            },
+            "worksFor": {
+              "@id": "https://swannbougou.in/#swameta"
+            },
+            "sameAs": [
+              "https://github.com/souProjet",
+              "https://fr.linkedin.com/in/swann-bougouin-8bb9b91ba",
+              "https://www.instagram.com/swametadev"
+            ]
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://swannbougou.in/#swameta",
+            "name": "Swameta",
+            "alternateName": "Swann Bougouin, développeur indépendant",
+            "url": "https://swannbougou.in/",
+            "image": "https://swannbougou.in/assets/img/cover.png",
+            "email": "contact@swameta.fr",
+            "description": "Création de sites vitrines, d'applications web, de SaaS et d'applications iOS et Android. Du cadrage à la mise en ligne, un seul interlocuteur.",
+            "founder": {
+              "@id": "https://swannbougou.in/#swann"
+            },
+            "priceRange": "€€",
+            "currenciesAccepted": "EUR",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Nantes",
+              "addressRegion": "Pays de la Loire",
+              "addressCountry": "FR"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Nantes"
+              },
+              {
+                "@type": "AdministrativeArea",
+                "name": "Pays de la Loire"
+              },
+              {
+                "@type": "Country",
+                "name": "France"
+              }
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Prestations",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "priceSpecification": {
+                    "@type": "PriceSpecification",
+                    "minPrice": 450,
+                    "priceCurrency": "EUR"
+                  },
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Site vitrine",
+                    "description": "Présenter votre activité, apparaître sur les recherches locales et recevoir des demandes sans intermédiaire."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "priceSpecification": {
+                    "@type": "PriceSpecification",
+                    "minPrice": 1500,
+                    "priceCurrency": "EUR"
+                  },
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Application web et SaaS",
+                    "description": "Vendre en ligne, gérer des comptes clients, remplacer les tableurs, automatiser les tâches répétitives. Paiement et facturation compris."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "priceSpecification": {
+                    "@type": "PriceSpecification",
+                    "minPrice": 5000,
+                    "priceCurrency": "EUR"
+                  },
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Application mobile iOS et Android",
+                    "description": "Natif ou React Native selon le besoin. Publication sur l'App Store et le Play Store comprise."
+                  }
+                }
+              ]
+            },
+            "sameAs": [
+              "https://github.com/souProjet",
+              "https://fr.linkedin.com/in/swann-bougouin-8bb9b91ba",
+              "https://www.instagram.com/swametadev"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://swannbougou.in/#website",
+            "url": "https://swannbougou.in/",
+            "name": "Swann Bougouin",
+            "inLanguage": "fr-FR",
+            "publisher": {
+              "@id": "https://swannbougou.in/#swameta"
+            }
+          }
         ]
       }
     </script>
@@ -87,7 +212,7 @@
   </head>
 
   <body id="top">
-    <a href="#travaux" class="sr">Aller aux réalisations</a>
+    <a href="#contenu" class="sr">Aller au contenu</a>
 
     <header class="nav" id="nav">
       <div class="nav-inner">
@@ -130,7 +255,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="contenu">
       <!-- ============================ ACCROCHE ======================== -->
       <section class="hero">
         <div class="shell hero-grid">
@@ -152,7 +277,7 @@
             </div>
           </div>
           <div class="hero-photo">
-            <img src="assets/img/swann.png" alt="Swann Bougouin" width="640" height="800" />
+            <img src="assets/img/swann.webp" alt="Portrait de Swann Bougouin, developpeur web et mobile a Nantes" width="409" height="509" fetchpriority="high" decoding="async" />
           </div>
         </div>
         <div class="facts-wrap">
@@ -272,7 +397,7 @@
               <a class="case-link" href="https://splaze.fr" target="_blank" rel="noopener">splaze.fr &#8599;</a>
             </div>
             <div class="case-shot">
-              <img src="assets/img/splaze.png" alt="Page d'accueil de Splaze" loading="lazy" />
+              <img src="assets/img/splaze.webp" alt="Page d'accueil de Splaze" width="1400" height="875" loading="lazy" decoding="async" />
             </div>
           </article>
 
@@ -301,8 +426,8 @@
               <a class="case-link" href="https://selfsolution.fr" target="_blank" rel="noopener">selfsolution.fr &#8599;</a>
             </div>
             <div class="case-shot case-shot-duo">
-              <img src="assets/img/selfsolution.png" alt="Interface de Self Solution" loading="lazy" />
-              <img src="assets/img/selfsolutionbudget.png" alt="Interface de Self Solution Budget" loading="lazy" />
+              <img src="assets/img/selfsolution.webp" alt="Interface de Self Solution" width="1400" height="665" loading="lazy" decoding="async" />
+              <img src="assets/img/selfsolutionbudget.webp" alt="Interface de Self Solution Budget" width="1400" height="665" loading="lazy" decoding="async" />
             </div>
           </article>
 
@@ -326,7 +451,7 @@
               <a class="case-link" href="https://selenevasions.fr" target="_blank" rel="noopener">selenevasions.fr &#8599;</a>
             </div>
             <div class="case-shot">
-              <img src="assets/img/selenevasions.png" alt="Page d'accueil de SelenEvasion" loading="lazy" />
+              <img src="assets/img/selenevasions.webp" alt="Page d'accueil de SelenEvasion" width="1400" height="875" loading="lazy" decoding="async" />
             </div>
           </article>
 
@@ -349,7 +474,7 @@
               <a class="case-link" href="https://zendra.pro" target="_blank" rel="noopener">zendra.pro &#8599;</a>
             </div>
             <div class="case-shot">
-              <img src="assets/img/zendra.png" alt="Page d'accueil de Zendra" loading="lazy" />
+              <img src="assets/img/zendra.webp" alt="Page d'accueil de Zendra" width="1400" height="875" loading="lazy" decoding="async" />
             </div>
           </article>
         </div>
@@ -369,22 +494,22 @@
             </p>
           </div>
           <div class="sites" data-reveal>
-            <div class="site">
-              <img src="assets/img/biocut.png" alt="Site Bio Cut" loading="lazy" />
-              <div class="site-body"><strong>Bio Cut</strong><span>Site vitrine</span></div>
-            </div>
-            <div class="site">
-              <img src="assets/img/planetebois.png" alt="Site Planète Bois" loading="lazy" />
-              <div class="site-body"><strong>Planète Bois</strong><span>Site vitrine</span></div>
-            </div>
-            <div class="site">
-              <img src="assets/img/sofiastruillou.png" alt="Site Sofia Struillou" loading="lazy" />
-              <div class="site-body"><strong>Sofia Struillou</strong><span>Site vitrine</span></div>
-            </div>
-            <div class="site">
-              <img src="assets/img/unepauseensoi.png" alt="Site Une Pause En Soi" loading="lazy" />
-              <div class="site-body"><strong>Une Pause En Soi</strong><span>Site vitrine</span></div>
-            </div>
+            <a class="site" href="https://bio-cut.fr/" target="_blank" rel="noopener">
+              <img src="assets/img/biocut.webp" alt="Site vitrine Bio Cut" width="800" height="600" loading="lazy" decoding="async" />
+              <div class="site-body"><strong>Bio Cut</strong><span>bio-cut.fr</span></div>
+            </a>
+            <a class="site" href="https://planetebois.swameta.fr/" target="_blank" rel="noopener">
+              <img src="assets/img/planetebois.webp" alt="Site vitrine Planète Bois" width="800" height="600" loading="lazy" decoding="async" />
+              <div class="site-body"><strong>Planète Bois</strong><span>planetebois.swameta.fr</span></div>
+            </a>
+            <a class="site" href="https://sofia.swameta.fr/" target="_blank" rel="noopener">
+              <img src="assets/img/sofiastruillou.webp" alt="Site vitrine de Sofia Struillou" width="800" height="600" loading="lazy" decoding="async" />
+              <div class="site-body"><strong>Sofia Struillou</strong><span>sofia.swameta.fr</span></div>
+            </a>
+            <a class="site" href="https://une-pause-en-soi.fr/" target="_blank" rel="noopener">
+              <img src="assets/img/unepauseensoi.webp" alt="Site vitrine Une Pause En Soi" width="800" height="600" loading="lazy" decoding="async" />
+              <div class="site-body"><strong>Une Pause En Soi</strong><span>une-pause-en-soi.fr</span></div>
+            </a>
           </div>
         </div>
       </section>
@@ -461,7 +586,7 @@
               </p>
             </article>
             <article class="job">
-              <h3>AVANCIAL <span style="white-space: nowrap">— filiale SNCF</span></h3>
+              <h3>AVANCIAL <span class="job-tag">Filiale SNCF</span></h3>
               <p class="role">Développeur</p>
               <p>
                 Développeur au sein d'AVANCIAL, filiale du groupe SNCF. Je

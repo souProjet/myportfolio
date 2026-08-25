@@ -383,8 +383,8 @@
   function syncEstimate() {
     if (!estimate || !fieldResume || !fieldDetails) return;
     var resume =
-      estimate.ref + " — " + estimate.type + " — " + estimate.price +
-      " — " + estimate.delay;
+      estimate.ref + " · " + estimate.type + " · " + estimate.price +
+      " · " + estimate.delay;
     fieldResume.value = resume;
     fieldDetails.value = [
       "Référence : " + estimate.ref,
@@ -417,7 +417,7 @@
       var subject = document.getElementById("f-subject");
       var message = document.getElementById("f-message");
       if (subject && !subject.value && estimate) {
-        subject.value = estimate.type + " — " + estimate.ref;
+        subject.value = estimate.type + " · " + estimate.ref;
       }
       if (message && !message.value && estimate) {
         message.value =
