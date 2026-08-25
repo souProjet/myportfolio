@@ -631,6 +631,9 @@ legend { padding: 0; }
 .sim-ref { font-family: var(--mono); font-weight: 700; font-size: 0.75rem; letter-spacing: 0.08em; color: var(--jaune); white-space: nowrap; }
 
 .sim-body { padding: 1.5rem 1.25rem; }
+/* Les figures sont deux listes de definition distinctes : la marge UA du dl
+   s'ajouterait aux ecarts deja poses par .sim-fig et .sim-duo. */
+.sim-body dl { margin: 0; }
 .sim-fig dt { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: #5a5a5a; margin-bottom: 0.3rem; }
 .sim-fig dd { margin: 0; font-family: var(--display); font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
 .sim-fig-main dd { font-size: clamp(1.75rem, 1rem + 2.6vw, 3rem); }
@@ -749,6 +752,38 @@ legend { padding: 0; }
 .foot nav { display: flex; flex-wrap: wrap; gap: 1.5rem; }
 .foot a { text-decoration: none; border-bottom: var(--rule) solid transparent; }
 .foot a:hover { border-bottom-color: var(--violet); }
+
+/* ---------- Mentions legales ---------- */
+.legal h1 { font-size: clamp(2rem, 1.2rem + 3.2vw, 3.5rem); line-height: 1.02; margin-top: 1rem; }
+.legal h2 {
+  font-size: clamp(1.125rem, 0.98rem + 0.7vw, 1.5rem);
+  margin: 2.75rem 0 0.85rem;
+  padding-top: 0.85rem;
+  border-top: var(--rule) solid currentColor;
+}
+.legal p { max-width: 68ch; }
+.legal-list { margin: 0; display: grid; gap: 0; max-width: 68ch; }
+.legal-list > div {
+  display: grid;
+  grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
+  gap: 0.35rem 1.5rem;
+  padding-block: 0.7rem;
+  border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+}
+.legal-list > div:first-child { border-top: 0; }
+.legal-list dt {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 0.2rem;
+}
+.legal-list dd { margin: 0; }
+.legal-back { margin-top: 2.5rem; }
+@media (max-width: 600px) {
+  .legal-list > div { grid-template-columns: minmax(0, 1fr); }
+}
 /* Le @ capitalise en Space Mono se lit comme un « a » : on garde la casse reelle. */
 .foot a[href^="mailto:"] { text-transform: none; letter-spacing: 0.04em; }
 
