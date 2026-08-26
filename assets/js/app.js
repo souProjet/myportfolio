@@ -6,12 +6,13 @@
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- Mesure d'audience ----------
-     gtag est absent des que la page est servie hors production ou qu'un
-     bloqueur agit : aucun appel ne doit interrompre le reste du script. */
+     posthog est absent des qu'un bloqueur agit ou que le snippet n'a pas ete
+     charge : aucun appel ne doit interrompre le reste du script. Le stub pose
+     par le snippet accepte capture() avant meme que array.js soit arrive. */
   var track = function (name, params) {
-    if (typeof window.gtag !== "function") return;
+    if (!window.posthog || typeof window.posthog.capture !== "function") return;
     try {
-      window.gtag("event", name, params || {});
+      window.posthog.capture(name, params || {});
     } catch (e) {}
   };
 
