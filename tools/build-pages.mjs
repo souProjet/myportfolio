@@ -593,6 +593,12 @@ const SERVICES = [
               Je pratique les deux au quotidien, donc je n'ai aucun intérêt à
               vous pousser vers l'un ou l'autre. On tranche au cadrage, sur
               votre besoin réel.
+            </p>
+            <p>
+              Les deux options sont en ligne et téléchargeables :
+              <a href="/realisation-splaze.html">Splaze</a> en natif Swift et
+              Kotlin, <a href="/realisation-questia.html">Questia</a> en React
+              Native avec le web sur la même base de code.
             </p>`
       },
       {
@@ -1095,6 +1101,173 @@ const CASES = [
     ]
   },
 
+  /* ---------------------------------------------------------------- */
+  {
+    slug: "realisation-questia.html",
+    breadcrumb: "Questia",
+    title: "Questia : une app Android et web conçue et publiée seul | Étude de cas",
+    description:
+      "Étude de cas Questia : une quête par jour dans la vraie vie, générée par un moteur de profil et un modèle de langage encadré. Application Android publiée sur le Play Store et application web, même compte, code TypeScript partagé.",
+    kicker: "Étude de cas · App Android et web publiée",
+    h1: "Questia, une quête par jour <br class='br-lg' />pour chaque joueur",
+    lede:
+      "Une application qui propose chaque matin une mission courte à faire dans la vraie vie, calibrée sur le profil de la personne. Application Android publiée sur le Play Store, application web, un seul compte, une seule base de code.",
+    ctaTitle: "Une application mobile <br class='br-lg' />à sortir vraiment ?",
+    work: { name: "Questia", url: "https://questia.fr", category: "LifestyleApplication", os: "Android, Web" },
+    hero: shot("questia", "Page d'accueil de Questia", 875),
+    facts: [
+      { k: "Rôle", v: "Conception, développement, publication" },
+      { k: "Surfaces", v: "Application Android sur le Play Store, application web, même compte" },
+      { k: "Technologies", v: "Expo / React Native, Next.js, TypeScript partagé, PostgreSQL, modèle de langage" },
+      { k: "Particularité", v: "Moteur de profil déterministe qui encadre la génération de texte" },
+      { k: "En ligne", v: "<a href=\"https://questia.fr\" target=\"_blank\" rel=\"noopener\">questia.fr</a> · <a href=\"https://play.google.com/store/apps/details?id=fr.questia.app\" target=\"_blank\" rel=\"noopener\">Google Play</a>" }
+    ],
+    sections: [
+      {
+        kicker: "Le point de départ",
+        h2: "Une liste de tâches <br class='br-lg' />ne se termine jamais",
+        lede:
+          "Les applications de motivation empilent des objectifs, comptent les jours consécutifs et rappellent à leur utilisateur tout ce qu'il n'a pas fait. Au premier jour manqué, la série tombe et l'application se désinstalle.",
+        html: `            <p>
+              Le pari de Questia est inverse : une seule mission par matin, avec
+              une fin nette. On la fait ou on la refuse, et il n'y a rien
+              derrière. Pas de série à tenir, pas de rattrapage, pas de tableau
+              de bord qui rappelle son retard à quelqu'un qui a déjà une semaine
+              chargée.
+            </p>
+            <p>
+              Le problème intéressant n'est donc pas de gérer des tâches, c'est
+              de proposer la bonne mission. Trop facile, elle ne vaut pas le
+              déplacement. Trop ambitieuse, elle est refusée et la personne ne
+              revient pas le lendemain. Toute la difficulté du produit tient
+              dans ce réglage, et c'est là qu'est passé l'essentiel du travail.
+            </p>`
+      },
+      {
+        tone: "on-violet",
+        kicker: "Le produit",
+        h2: "Deux questions, puis <br class='br-lg' />une mission par matin",
+        html: marks([
+          "<strong>Deux questions au départ</strong> : ce qu'on aime, ce qu'on est prêt à tenter, et c'est tout pour commencer",
+          "<strong>Une quête par matin</strong> : trente à quatre-vingt-dix minutes, une fin claire, le droit de refuser sans conséquence",
+          "<strong>Un contexte pris en compte</strong> : météo, ville, jour de la semaine, pour ne pas proposer une sortie sous l'orage un mardi à 7 h",
+          "<strong>Deux surfaces, un compte</strong> : l'application Android et le site partagent le profil, l'historique et la progression",
+          "<strong>Des garde-fous explicites</strong> : consentement avant une quête physique, repli sur une mission calme quand les conditions ne s'y prêtent pas"
+        ]) + `
+            <p>
+              Le produit est bilingue, gère les notifications, le partage d'une
+              carte de quête, les pages légales et une boutique. Rien de tout
+              cela n'est visible dans une démonstration de deux minutes, et tout
+              cela est obligatoire pour qu'une application existe ailleurs que
+              sur le téléphone de son auteur.
+            </p>`
+      },
+      {
+        kicker: "Sous le capot",
+        h2: "Un modèle de langage <br class='br-lg' />tenu par un moteur",
+        lede:
+          "Demander directement des idées de sortie à un modèle de langage donne une liste plausible, générique et sans mémoire. Ce n'est pas un produit, c'est une démonstration.",
+        html: `            <p>
+              Questia sépare donc deux responsabilités. Un moteur écrit en
+              TypeScript décide <em>quoi</em> proposer : il compare le profil
+              déclaré à un profil déduit de l'historique, mesure l'écart entre
+              les deux, en tire une phase de progression et une intensité cible,
+              puis choisit une famille de quête et une durée. Ce moteur est
+              déterministe, testé, et ne demande rien à personne.
+            </p>
+            <p>
+              Le modèle de langage n'intervient qu'ensuite, pour écrire la
+              mission dans ces limites : famille imposée, intensité imposée,
+              durée imposée, contexte du jour fourni. Sa sortie est validée
+              avant d'être servie, et si l'appel échoue ou renvoie quelque chose
+              d'invalide, un tirage déterministe dans la même famille prend le
+              relais. L'utilisateur reçoit sa quête, que le fournisseur soit
+              debout ou non.
+            </p>
+            <p>
+              C'est la question que je pose à chaque projet où l'on veut mettre
+              de l'IA : que se passe-t-il quand le modèle répond mal, répond
+              lentement, ou ne répond pas ? Si la réponse est « l'écran reste
+              vide », la fonctionnalité n'est pas finie. Le même raisonnement
+              qu'à propos des sources citées dans
+              <a href="/realisation-zendra.html">Zendra</a> : ce qui rend un
+              produit utilisable au quotidien n'est presque jamais la partie
+              qu'on montre en démonstration.
+            </p>`
+      },
+      {
+        kicker: "Deux plateformes",
+        h2: "Une base de code <br class='br-lg' />pour le mobile et le web",
+        html: `            <p>
+              L'application Android est développée en React Native avec Expo, le
+              site en Next.js. Les deux vivent dans le même dépôt et partagent
+              le même TypeScript : les types, les constantes, le moteur de
+              profil et une partie de l'interface sont écrits une fois. Une
+              règle de calibrage corrigée est corrigée des deux côtés, ce qui
+              évite la dérive classique où le mobile et le web finissent par ne
+              plus tout à fait dire la même chose.
+            </p>
+            <p>
+              Ce n'est pas le bon choix partout. Sur
+              <a href="/realisation-splaze.html">Splaze</a>, les applications
+              sont écrites en Swift et en Kotlin, parce que le produit demande
+              ce que chaque plateforme fait de mieux. Ici, une personne seule
+              devait tenir deux surfaces à jour : mutualiser était le seul moyen
+              de sortir l'application sans laisser le site derrière. Le choix se
+              décide projet par projet, et je le pose au cadrage plutôt qu'après
+              coup.
+            </p>`
+      },
+      {
+        tone: "on-jaune",
+        kicker: "Jusqu'au Play Store",
+        h2: "Publier, c'est un <br class='br-lg' />métier en plus",
+        html: `            <p>
+              Questia est en ligne sur questia.fr et publié sur le Google Play
+              Store. Entre l'application qui tourne sur mon téléphone et
+              l'application téléchargeable, il y a eu la signature des binaires,
+              la fiche du magasin, le questionnaire de classification, le
+              formulaire de sécurité des données, la politique de
+              confidentialité, les conditions de vente, la vérification que rien
+              dans les textes ne laisse croire à une promesse thérapeutique, et
+              plusieurs allers-retours de révision.
+            </p>
+            <p>
+              C'est la partie que les devis oublient et que je chiffre
+              séparément, parce qu'elle se compte en jours et qu'elle bloque une
+              sortie de plusieurs semaines quand on la découvre à la fin. Avoir
+              franchi cette étape sur mes propres produits est précisément ce
+              qui me permet de la cadrer sur les vôtres : voir la page
+              <a href="/developpeur-application-mobile.html">développeur d'application mobile</a>.
+            </p>
+            <p>
+              <a class="case-link" href="https://questia.fr" target="_blank" rel="noopener">questia.fr &#8599;</a>
+            </p>`
+      },
+      {
+        kicker: "Questions fréquentes",
+        h2: "Ce qu'on me <br class='br-lg' />demande ensuite",
+        html: faq([
+          {
+            q: "Combien coûte une application mobile de ce genre ?",
+            a: "Cela dépend surtout du nombre de surfaces et de la présence de comptes et de paiements. Le <a href=\"/#estimation\">simulateur</a> donne un ordre de grandeur en deux minutes, et je le confirme après un échange."
+          },
+          {
+            q: "Faut-il une application native ou une base partagée ?",
+            a: "Une base partagée quand les deux plateformes font la même chose et que l'équipe est petite, du natif quand le produit dépend de ce que chaque système fait de mieux. Je tranche au cadrage, avec l'argument correspondant."
+          },
+          {
+            q: "Prenez-vous en charge la publication sur les magasins ?",
+            a: "Oui : comptes développeurs, signature, fiches, questionnaires de confidentialité et de classification, puis les révisions jusqu'à la mise en ligne. C'est une ligne à part du devis, parce que c'est un vrai travail."
+          },
+          {
+            q: "Mon produit a-t-il besoin d'un modèle de langage ?",
+            a: "Souvent non. Quand la réponse est oui, il faut décider dès le cadrage ce qui se passe si le modèle échoue, ce qui est envoyé au fournisseur et ce qui reste chez vous. Ces réponses figurent au devis, pas après la mise en ligne."
+          }
+        ])
+      }
+    ]
+  },
   /* ---------------------------------------------------------------- */
   {
     slug: "realisation-selfsolution.html",

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+<!-- Fichier genere par tools/build-pages.mjs : editez le script, pas ce fichier. -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Questia : une app Android et web conçue et publiée seul | Étude de cas</title>
+    <meta name="description" content="Étude de cas Questia : une quête par jour dans la vraie vie, générée par un moteur de profil et un modèle de langage encadré. Application Android publiée sur le Play Store et application web, même compte, code TypeScript partagé." />
+    <link rel="canonical" href="https://swannbougou.in/realisation-questia.html" />
+    <link rel="icon" href="assets/img/logo.png" />
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Swann Bougouin" />
+    <meta property="og:title" content="Questia : une app Android et web conçue et publiée seul | Étude de cas" />
+    <meta property="og:description" content="Étude de cas Questia : une quête par jour dans la vraie vie, générée par un moteur de profil et un modèle de langage encadré. Application Android publiée sur le Play Store et application web, même compte, code TypeScript partagé." />
+    <meta property="og:url" content="https://swannbougou.in/realisation-questia.html" />
+    <meta property="og:image" content="https://swannbougou.in/assets/img/cover.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://swannbougou.in/" },
+              { "@type": "ListItem", "position": 2, "name": "Réalisations", "item": "https://swannbougou.in/#travaux" },
+              { "@type": "ListItem", "position": 3, "name": "Questia", "item": "https://swannbougou.in/realisation-questia.html" }
+            ]
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "Questia",
+            "headline": "Questia",
+            "description": "Étude de cas Questia : une quête par jour dans la vraie vie, générée par un moteur de profil et un modèle de langage encadré. Application Android publiée sur le Play Store et application web, même compte, code TypeScript partagé.",
+            "url": "https://swannbougou.in/realisation-questia.html",
+            "inLanguage": "fr-FR",
+            "author": {
+              "@type": "ProfessionalService",
+              "name": "Swameta",
+              "alternateName": "Swann Bougouin",
+              "url": "https://swannbougou.in/",
+              "email": "contact@swameta.fr",
+              "telephone": "+33602221182",
+              "address": { "@type": "PostalAddress", "addressLocality": "Nantes", "addressCountry": "FR" }
+            },
+            "about": {
+              "@type": "SoftwareApplication",
+              "name": "Questia",
+              "applicationCategory": "LifestyleApplication",
+              "operatingSystem": "Android, Web",
+              "url": "https://questia.fr"
+            }
+          }
+        ]
+      }
+    </script>
+
+    <script>
+      // Applique le theme avant le premier rendu pour eviter le flash.
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t === "light" || t === "dark")
+            document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="preload" as="font" type="font/woff2"
+      href="assets/fonts/web/syne-400_800.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2"
+      href="assets/fonts/web/archivo-400_700.woff2" crossorigin />
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- Mesure d'audience sans cookie : ni cookie, ni stockage local ou de
+         session. L'identifiant est reconstruit cote serveur par un hachage
+         irreversible dont la cle change chaque jour. Heberge dans l'UE. -->
+    <script>
+      !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+      posthog.init("phc_BXwB7J33LBWBARGmR7yYLdz7KM5iUtbV4jdddWYPj6Lb", {
+        api_host: "https://eu.i.posthog.com",
+        defaults: "2026-05-30",
+        cookieless_mode: "always",
+        capture_dead_clicks: false,
+        capture_exceptions: false
+      });
+    </script>
+  </head>
+
+  <body id="top">
+    <a href="#contenu" class="sr">Aller au contenu</a>
+
+    <header class="nav" id="nav">
+      <div class="nav-inner">
+        <a class="brand" href="/">Swann Bougouin</a>
+
+        <nav aria-label="Principale">
+          <ul class="nav-links">
+            <li><a href="/#travaux">Réalisations</a></li>
+            <li><a href="/#methode">Méthode</a></li>
+            <li><a href="/#parcours">Parcours</a></li>
+            <li><a href="/#estimation">Estimation</a></li>
+            <li><a href="/#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-tools">
+          <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="Changer de thème">
+            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4.2" />
+              <path d="M12 2.6v2.2M12 19.2v2.2M4.2 12H2M22 12h-2.2M6.3 6.3 4.8 4.8M19.2 19.2l-1.5-1.5M17.7 6.3l1.5-1.5M4.8 19.2l1.5-1.5" />
+            </svg>
+            <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.5 14.3A8.5 8.5 0 1 1 9.7 3.5a6.8 6.8 0 0 0 10.8 10.8Z" />
+            </svg>
+          </button>
+          <a class="btn btn-solid" href="/#estimation">Estimer mon projet</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenu">
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Étude de cas · App Android et web publiée</span>
+            <h1>Questia, une quête par jour <br class='br-lg' />pour chaque joueur</h1>
+            <p class="lede">Une application qui propose chaque matin une mission courte à faire dans la vraie vie, calibrée sur le profil de la personne. Application Android publiée sur le Play Store, application web, un seul compte, une seule base de code.</p>
+          </div>
+          <p class="legal-back" data-reveal>
+            <a class="btn btn-solid" href="https://questia.fr" target="_blank" rel="noopener">Voir Questia en ligne</a>
+            <a class="btn" href="/#contact">Parler d'un projet</a>
+          </p>
+          <div class="case-shot" data-reveal>
+            <img src="assets/img/questia.webp"
+              srcset="assets/img/questia-700.webp 700w, assets/img/questia-1000.webp 1000w, assets/img/questia.webp 1400w"
+              sizes="(min-width: 1240px) 1200px, 94vw" alt="Page d'accueil de Questia" width="1400" height="875" loading="lazy" decoding="async" />
+          </div>
+          <div data-reveal>
+            <dl class="case-facts">
+              <div><dt>Rôle</dt><dd>Conception, développement, publication</dd></div>
+              <div><dt>Surfaces</dt><dd>Application Android sur le Play Store, application web, même compte</dd></div>
+              <div><dt>Technologies</dt><dd>Expo / React Native, Next.js, TypeScript partagé, PostgreSQL, modèle de langage</dd></div>
+              <div><dt>Particularité</dt><dd>Moteur de profil déterministe qui encadre la génération de texte</dd></div>
+              <div><dt>En ligne</dt><dd><a href="https://questia.fr" target="_blank" rel="noopener">questia.fr</a> · <a href="https://play.google.com/store/apps/details?id=fr.questia.app" target="_blank" rel="noopener">Google Play</a></dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Le point de départ</span>
+            <h2>Une liste de tâches <br class='br-lg' />ne se termine jamais</h2>
+            <p class="lede">Les applications de motivation empilent des objectifs, comptent les jours consécutifs et rappellent à leur utilisateur tout ce qu'il n'a pas fait. Au premier jour manqué, la série tombe et l'application se désinstalle.</p>
+          </div>
+          <div data-reveal>
+            <p>
+              Le pari de Questia est inverse : une seule mission par matin, avec
+              une fin nette. On la fait ou on la refuse, et il n'y a rien
+              derrière. Pas de série à tenir, pas de rattrapage, pas de tableau
+              de bord qui rappelle son retard à quelqu'un qui a déjà une semaine
+              chargée.
+            </p>
+            <p>
+              Le problème intéressant n'est donc pas de gérer des tâches, c'est
+              de proposer la bonne mission. Trop facile, elle ne vaut pas le
+              déplacement. Trop ambitieuse, elle est refusée et la personne ne
+              revient pas le lendemain. Toute la difficulté du produit tient
+              dans ce réglage, et c'est là qu'est passé l'essentiel du travail.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band on-violet">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Le produit</span>
+            <h2>Deux questions, puis <br class='br-lg' />une mission par matin</h2>
+          </div>
+          <div data-reveal>
+            <ul class="marks">
+              <li><strong>Deux questions au départ</strong> : ce qu'on aime, ce qu'on est prêt à tenter, et c'est tout pour commencer</li>
+              <li><strong>Une quête par matin</strong> : trente à quatre-vingt-dix minutes, une fin claire, le droit de refuser sans conséquence</li>
+              <li><strong>Un contexte pris en compte</strong> : météo, ville, jour de la semaine, pour ne pas proposer une sortie sous l'orage un mardi à 7 h</li>
+              <li><strong>Deux surfaces, un compte</strong> : l'application Android et le site partagent le profil, l'historique et la progression</li>
+              <li><strong>Des garde-fous explicites</strong> : consentement avant une quête physique, repli sur une mission calme quand les conditions ne s'y prêtent pas</li>
+            </ul>
+            <p>
+              Le produit est bilingue, gère les notifications, le partage d'une
+              carte de quête, les pages légales et une boutique. Rien de tout
+              cela n'est visible dans une démonstration de deux minutes, et tout
+              cela est obligatoire pour qu'une application existe ailleurs que
+              sur le téléphone de son auteur.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Sous le capot</span>
+            <h2>Un modèle de langage <br class='br-lg' />tenu par un moteur</h2>
+            <p class="lede">Demander directement des idées de sortie à un modèle de langage donne une liste plausible, générique et sans mémoire. Ce n'est pas un produit, c'est une démonstration.</p>
+          </div>
+          <div data-reveal>
+            <p>
+              Questia sépare donc deux responsabilités. Un moteur écrit en
+              TypeScript décide <em>quoi</em> proposer : il compare le profil
+              déclaré à un profil déduit de l'historique, mesure l'écart entre
+              les deux, en tire une phase de progression et une intensité cible,
+              puis choisit une famille de quête et une durée. Ce moteur est
+              déterministe, testé, et ne demande rien à personne.
+            </p>
+            <p>
+              Le modèle de langage n'intervient qu'ensuite, pour écrire la
+              mission dans ces limites : famille imposée, intensité imposée,
+              durée imposée, contexte du jour fourni. Sa sortie est validée
+              avant d'être servie, et si l'appel échoue ou renvoie quelque chose
+              d'invalide, un tirage déterministe dans la même famille prend le
+              relais. L'utilisateur reçoit sa quête, que le fournisseur soit
+              debout ou non.
+            </p>
+            <p>
+              C'est la question que je pose à chaque projet où l'on veut mettre
+              de l'IA : que se passe-t-il quand le modèle répond mal, répond
+              lentement, ou ne répond pas ? Si la réponse est « l'écran reste
+              vide », la fonctionnalité n'est pas finie. Le même raisonnement
+              qu'à propos des sources citées dans
+              <a href="/realisation-zendra.html">Zendra</a> : ce qui rend un
+              produit utilisable au quotidien n'est presque jamais la partie
+              qu'on montre en démonstration.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Deux plateformes</span>
+            <h2>Une base de code <br class='br-lg' />pour le mobile et le web</h2>
+          </div>
+          <div data-reveal>
+            <p>
+              L'application Android est développée en React Native avec Expo, le
+              site en Next.js. Les deux vivent dans le même dépôt et partagent
+              le même TypeScript : les types, les constantes, le moteur de
+              profil et une partie de l'interface sont écrits une fois. Une
+              règle de calibrage corrigée est corrigée des deux côtés, ce qui
+              évite la dérive classique où le mobile et le web finissent par ne
+              plus tout à fait dire la même chose.
+            </p>
+            <p>
+              Ce n'est pas le bon choix partout. Sur
+              <a href="/realisation-splaze.html">Splaze</a>, les applications
+              sont écrites en Swift et en Kotlin, parce que le produit demande
+              ce que chaque plateforme fait de mieux. Ici, une personne seule
+              devait tenir deux surfaces à jour : mutualiser était le seul moyen
+              de sortir l'application sans laisser le site derrière. Le choix se
+              décide projet par projet, et je le pose au cadrage plutôt qu'après
+              coup.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band on-jaune">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Jusqu'au Play Store</span>
+            <h2>Publier, c'est un <br class='br-lg' />métier en plus</h2>
+          </div>
+          <div data-reveal>
+            <p>
+              Questia est en ligne sur questia.fr et publié sur le Google Play
+              Store. Entre l'application qui tourne sur mon téléphone et
+              l'application téléchargeable, il y a eu la signature des binaires,
+              la fiche du magasin, le questionnaire de classification, le
+              formulaire de sécurité des données, la politique de
+              confidentialité, les conditions de vente, la vérification que rien
+              dans les textes ne laisse croire à une promesse thérapeutique, et
+              plusieurs allers-retours de révision.
+            </p>
+            <p>
+              C'est la partie que les devis oublient et que je chiffre
+              séparément, parce qu'elle se compte en jours et qu'elle bloque une
+              sortie de plusieurs semaines quand on la découvre à la fin. Avoir
+              franchi cette étape sur mes propres produits est précisément ce
+              qui me permet de la cadrer sur les vôtres : voir la page
+              <a href="/developpeur-application-mobile.html">développeur d'application mobile</a>.
+            </p>
+            <p>
+              <a class="case-link" href="https://questia.fr" target="_blank" rel="noopener">questia.fr &#8599;</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Questions fréquentes</span>
+            <h2>Ce qu'on me <br class='br-lg' />demande ensuite</h2>
+          </div>
+          <div data-reveal>
+            <dl class="faq">
+              <div><dt>Combien coûte une application mobile de ce genre ?</dt><dd>Cela dépend surtout du nombre de surfaces et de la présence de comptes et de paiements. Le <a href="/#estimation">simulateur</a> donne un ordre de grandeur en deux minutes, et je le confirme après un échange.</dd></div>
+              <div><dt>Faut-il une application native ou une base partagée ?</dt><dd>Une base partagée quand les deux plateformes font la même chose et que l'équipe est petite, du natif quand le produit dépend de ce que chaque système fait de mieux. Je tranche au cadrage, avec l'argument correspondant.</dd></div>
+              <div><dt>Prenez-vous en charge la publication sur les magasins ?</dt><dd>Oui : comptes développeurs, signature, fiches, questionnaires de confidentialité et de classification, puis les révisions jusqu'à la mise en ligne. C'est une ligne à part du devis, parce que c'est un vrai travail.</dd></div>
+              <div><dt>Mon produit a-t-il besoin d'un modèle de langage ?</dt><dd>Souvent non. Quand la réponse est oui, il faut décider dès le cadrage ce qui se passe si le modèle échoue, ce qui est envoyé au fournisseur et ce qui reste chez vous. Ces réponses figurent au devis, pas après la mise en ligne.</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="shell svc">
+          <div class="head" data-reveal>
+            <span class="kicker">Autres réalisations</span>
+            <h2>Voir aussi</h2>
+          </div>
+          <p class="legal-back" data-reveal>
+            <a class="btn" href="/realisation-splaze.html">Splaze</a>
+            <a class="btn" href="/realisation-selfsolution.html">Self Solution</a>
+            <a class="btn" href="/realisation-selenevasions.html">SelenEvasion</a>
+            <a class="btn" href="/realisation-zendra.html">Zendra</a>
+          </p>
+        </div>
+      </section>
+
+      <section class="band on-ink">
+        <div class="shell">
+          <div class="head" data-reveal>
+            <span class="kicker">Étape suivante</span>
+            <h2>Une application mobile <br class='br-lg' />à sortir vraiment ?</h2>
+            <p class="lede">
+              Le simulateur donne une fourchette en trente secondes, sans
+              inscription. Elle part avec votre message si vous décidez de
+              m'écrire, et je réponds sous 24 heures ouvrées.
+            </p>
+          </div>
+          <p class="legal-back">
+            <a class="btn btn-solid" href="/#estimation">Estimer mon projet</a>
+            <a class="btn" href="/#contact">Écrire directement</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="shell foot-inner">
+        <span>&copy; <span id="year">2026</span> Swann Bougouin / Swameta / Nantes</span>
+        <nav aria-label="Pied de page">
+          <a href="/creation-site-internet-nantes.html">Site internet</a>
+          <a href="/creation-application-web-saas.html">Application web</a>
+          <a href="/developpeur-application-mobile.html">Application mobile</a>
+          <a href="/developpeur-web-freelance-nantes.html">Freelance</a>
+          <a href="/refonte-site-internet.html">Refonte</a>
+          <a href="/mentions-legales.html">Mentions légales</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="assets/js/app.js" defer></script>
+  </body>
+</html>
